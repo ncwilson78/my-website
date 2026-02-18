@@ -45,7 +45,8 @@
         const { useState, useEffect } = React;
         const { 
             BookOpen, Users, Brain, Award, ChevronDown, ExternalLink, 
-            Mail, Linkedin, FileText, Menu, X, Lightbulb, Compass, Scale 
+            Mail, Linkedin, FileText, Menu, X, Lightbulb, Compass, Scale,
+            Code, Layers, Monitor, Bot
         } = lucide;
 
         // --- Navigation ---
@@ -62,6 +63,7 @@
             const navLinks = [
                 { name: 'Philosophy', href: '#philosophy' },
                 { name: 'Experience', href: '#experience' },
+                { name: 'Projects', href: '#projects' },
                 { name: 'Scholarship', href: '#scholarship' },
                 { name: 'Contact', href: '#contact' },
             ];
@@ -111,7 +113,7 @@
                                 Strategic Learning Leader
                             </div>
                             <h1 className="text-5xl md:text-6xl font-serif font-bold text-slate-900 leading-tight">
-                                Innovating education through <span className="text-blue-700 italic">human-centered</span> design.
+                                Bridging institutional goals with <span className="text-blue-700 italic">human-centered</span> design.
                             </h1>
                             <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
                                 I am an education strategist and learning scientist dedicated to designing resilient, inclusive learning ecosystems. My work focuses on AI fluency, digital transformation, and the critical intersection of technology and human connection.
@@ -120,7 +122,7 @@
                                 <a href="#contact" className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl">
                                     Get in Touch
                                 </a>
-                                <a href="#scholarship" className="px-6 py-3 bg-white text-slate-700 border border-slate-200 font-medium rounded-lg hover:bg-slate-50 transition-all">
+                                <a href="#projects" className="px-6 py-3 bg-white text-slate-700 border border-slate-200 font-medium rounded-lg hover:bg-slate-50 transition-all">
                                     View Work
                                 </a>
                             </div>
@@ -249,6 +251,88 @@
             </section>
         );
 
+        const ProjectCard = ({ iconName, title, description, links }) => (
+            <div className="bg-white rounded-lg p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-start gap-4 mb-4">
+                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-700 flex-shrink-0">
+                        <i data-lucide={iconName}></i>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+                    </div>
+                </div>
+                <p className="text-slate-600 mb-6">{description}</p>
+                <div className="flex flex-wrap gap-4">
+                    {links.map((link, index) => (
+                        <a key={index} href={link.url} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors">
+                            {link.text}
+                            <i data-lucide="external-link" width="14" height="14"></i>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const Projects = () => {
+            const projectList = [
+                {
+                    iconName: "bot",
+                    title: "Pedagogy Explorer Bot",
+                    description: "An AI-powered instructional design assistant that generates rigorous, interactive learning sequences for the Harvard Learning Experience Platform (LXP). It coordinates multiple specialized agent roles (Narrator, Instructor, Activity Crafter) to produce academically sound content based on cognitive science principles like interleaving and retrieval practice. Deployed in learning environments, it acts as a force multiplier for instructional designers, ensuring consistent pedagogical quality and active learner engagement.",
+                    links: []
+                },
+                {
+                    iconName: "code",
+                    title: "Educational AI System Prompt Library",
+                    description: "An open-source repository of carefully crafted system prompts designed to help educators leverage Generative AI. Includes prompts for various pedagogical roles and tasks.",
+                    links: [
+                        { text: "View Repository", url: "https://github.com/ncwilson78/System-Prompt-Library/blob/main/README.md" }
+                    ]
+                },
+                {
+                    iconName: "layers",
+                    title: "Multi-Agent Curriculum Design System",
+                    description: "A 'Human-in-the-Loop' AI workflow that decouples course creation into distinct phases: Structural Engineering, Pedagogical Synthesis, and Adversarial Evaluation. This system uses specialized AI agents to draft, refine, and audit curriculum content, ensuring high fidelity and reducing hallucinations.",
+                    links: [] 
+                },
+                {
+                    iconName: "monitor",
+                    title: "Intelligent Extended Reality (IXR) for Workforce Training",
+                    description: "Co-Principal Investigator on this NSF-funded project developing intelligent XR systems to foster learning and adaptability in future manufacturing workers. The project explores how AR/VR can support complex psychomotor skill acquisition.",
+                    links: [
+                        { text: "Project Details", url: "https://sail.coe.gatech.edu/projects#:~:text=FW%2DHTF%2DR%3A%20Fostering%20Learning%20and%20Adaptability%20of%20Future%20Manufacturing%20Workers%20with%20Intelligent%20Extended%20Reality%20(IXR)" }
+                    ]
+                },
+                {
+                    iconName: "brain",
+                    title: "Hololens Mixed Reality Pilot",
+                    description: "A pilot program exploring the use of Microsoft Hololens for immersive education. This initiative investigated how mixed reality can enhance student engagement and understanding of complex 3D concepts in the classroom.",
+                    links: [
+                        { text: "Watch Video", url: "https://northeastern.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=487e90e6-9125-45d4-8a8c-ac8e00cb42e9" },
+                        { text: "Read Case Study", url: "https://cos.northeastern.edu/seeing-the-future-microsoft-partnership-allows-professor-jared-auclair-to-bring-virtual-reality-to-the-classroom/" }
+                    ]
+                }
+            ];
+
+            return (
+                <section id="projects" className="py-24 bg-white border-t border-slate-200">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <div className="text-center max-w-3xl mx-auto mb-16">
+                            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">Featured Projects</h2>
+                            <p className="text-lg text-slate-600 leading-relaxed">
+                                Innovations in AI, extended reality, and learning systems design that bridge the gap between emerging technology and pedagogical rigor.
+                            </p>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {projectList.map((project, index) => (
+                                <ProjectCard key={index} {...project} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         const PublicationCard = ({ type, title, subtitle, date, tags, link }) => (
             <div className="group bg-white rounded-lg p-6 border border-slate-100 hover:border-blue-200 transition-all hover:shadow-lg h-full flex flex-col">
                 <div className="flex justify-between items-start mb-4">
@@ -281,7 +365,7 @@
             ];
 
             return (
-                <section id="scholarship" className="py-24 bg-white">
+                <section id="scholarship" className="py-24 bg-slate-50">
                     <div className="max-w-6xl mx-auto px-6">
                         <div className="mb-12">
                             <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">Scholarship & Thought Leadership</h2>
@@ -324,6 +408,7 @@
                     <Hero />
                     <Philosophy />
                     <Experience />
+                    <Projects />
                     <Scholarship />
                     <Contact />
                 </div>
