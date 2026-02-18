@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicholas Wilson | Strategic Learning Leader</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#1e293b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- React Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- App Logic -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { 
+            BookOpen, Users, Brain, Award, ChevronDown, ExternalLink, 
+            Mail, Linkedin, FileText, Menu, X, Lightbulb, Compass, Scale 
+        } = lucide;
+
+        // --- Navigation ---
+        const Navigation = () => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [
+                { name: 'Philosophy', href: '#philosophy' },
+                { name: 'Experience', href: '#experience' },
+                { name: 'Scholarship', href: '#scholarship' },
+                { name: 'Contact', href: '#contact' },
+            ];
+
+            return (
+                <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 shadow-md py-4 backdrop-blur-sm' : 'bg-white/0 py-6'}`}>
+                    <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+                        <a href="#" className={`text-xl font-serif font-bold tracking-tight ${scrolled ? 'text-slate-800' : 'text-slate-900'}`}>
+                            Nicholas Wilson, Ed.D.
+                        </a>
+
+                        <div className="hidden md:flex space-x-8">
+                            {navLinks.map((link) => (
+                                <a key={link.name} href={link.href} className={`text-sm font-medium hover:text-blue-700 transition-colors ${scrolled ? 'text-slate-600' : 'text-slate-700'}`}>
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
+
+                        <button className="md:hidden text-slate-700" onClick={() => setIsOpen(!isOpen)}>
+                            <i data-lucide={isOpen ? "x" : "menu"}></i>
+                        </button>
+                    </div>
+
+                    {isOpen && (
+                        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 px-6 flex flex-col space-y-4">
+                            {navLinks.map((link) => (
+                                <a key={link.name} href={link.href} className="text-slate-700 font-medium py-2 border-b border-slate-100" onClick={() => setIsOpen(false)}>
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        // --- Hero Section ---
+        const Hero = () => {
+            return (
+                <section className="relative min-h-screen flex items-center justify-center bg-slate-50 pt-20 overflow-hidden">
+                    <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-50/50 skew-x-12 transform origin-top-right translate-x-20"></div>
+                    
+                    <div className="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                        <div className="space-y-8 order-2 md:order-1">
+                            <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold tracking-wider uppercase rounded-full">
+                                Strategic Learning Leader
+                            </div>
+                            <h1 className="text-5xl md:text-6xl font-serif font-bold text-slate-900 leading-tight">
+                                Bridging institutional goals with <span className="text-blue-700 italic">human-centered</span> design.
+                            </h1>
+                            <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
+                                I am an education strategist and learning scientist dedicated to designing resilient, inclusive learning ecosystems. My work focuses on AI fluency, digital transformation, and the critical intersection of technology and human connection.
+                            </p>
+                            <div className="flex space-x-4 pt-2">
+                                <a href="#contact" className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl">
+                                    Get in Touch
+                                </a>
+                                <a href="#scholarship" className="px-6 py-3 bg-white text-slate-700 border border-slate-200 font-medium rounded-lg hover:bg-slate-50 transition-all">
+                                    View Work
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div className="relative order-1 md:order-2 flex justify-center md:justify-end">
+                            <div className="aspect-[4/5] w-full max-w-md bg-slate-200 rounded-2xl overflow-hidden shadow-2xl relative">
+                                {/* IMAGE SOURCE: Ensure this file name matches what you upload to GitHub */}
+                                <img src="LearningNow_641.jpg" alt="Nicholas Wilson" className="w-full h-full object-cover" onError={(e) => {e.target.style.display='none'; e.target.parentElement.innerHTML = '<div class=\'w-full h-full bg-slate-300 flex items-center justify-center text-slate-500 text-center p-4\'>Image not found.<br>Upload LearningNow_641.jpg</div>'}} />
+                                
+                                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+                                <div className="absolute -top-6 -right-6 w-32 h-32 bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-slate-400">
+                        <i data-lucide="chevron-down"></i>
+                    </div>
+                </section>
+            );
+        };
+
+        const ValueCard = ({ iconName, title, description }) => (
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6 text-blue-700">
+                    <i data-lucide={iconName}></i>
+                </div>
+                <h3 className="text-xl font-serif font-bold text-slate-900 mb-3">{title}</h3>
+                <p className="text-slate-600 leading-relaxed flex-grow">{description}</p>
+            </div>
+        );
+
+        const Philosophy = () => (
+            <section id="philosophy" className="py-24 bg-white">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6">The "Teacher-Scholar" Mindset</h2>
+                        <p className="text-lg text-slate-600 leading-relaxed">
+                            I approach educational leadership through the lens of a tenured professor deeply invested in student success. My work is authoritative and intellectual, but never cold. It is driven by a passion for human connection, not just data.
+                        </p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <ValueCard iconName="compass" title="Equity & Fairness" description="I view all roles and technologies through the lens of diversity, inclusion, and social justice. Technology should narrow gaps, not widen them." />
+                        <ValueCard iconName="users" title="Human Connection" description="Relationship building is not a 'soft skill'; it is the core of effective education. Even when discussing AI, the focus must remain on people." />
+                        <ValueCard iconName="lightbulb" title="Future-Focused Design" description="Navigating the complex shifts in instructional modalities requires framing innovation around learner agency and 'productive struggle'." />
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Experience = () => (
+            <section id="experience" className="py-24 bg-slate-50">
+                <div className="max-w-5xl mx-auto px-6">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-16 text-center">Professional Trajectory</h2>
+                    <div className="space-y-12">
+                        {/* Harvard */}
+                        <div className="relative pl-8 md:pl-0">
+                            <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 transform -translate-x-1/2"></div>
+                            <div className="md:flex items-start justify-between mb-12 group">
+                                <div className="absolute left-0 md:left-1/2 w-3 h-3 bg-blue-600 rounded-full mt-2 transform md:-translate-x-1/2 ring-4 ring-slate-50"></div>
+                                <div className="md:w-[45%] mb-2 md:mb-0 md:text-right md:pr-12">
+                                    <h3 className="text-xl font-bold text-slate-900">Director of Teaching Innovation</h3>
+                                    <div className="text-blue-700 font-medium mb-1">Harvard University, VPAL</div>
+                                    <div className="text-sm text-slate-500 font-mono">July 2022 - Present</div>
+                                </div>
+                                <div className="md:w-[45%] md:pl-12">
+                                    <p className="text-slate-600 leading-relaxed text-sm">
+                                        Leading AI education and digital transformation strategy across Harvard’s 13 schools. Co-developed institution-wide frameworks for AI integration, ethics, and instructional redesign. Directing the flagship teaching and learning conference and serving as editor-in-chief of a university-wide faculty innovation newsletter.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Northeastern */}
+                        <div className="relative pl-8 md:pl-0">
+                            <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 transform -translate-x-1/2"></div>
+                            <div className="md:flex items-start justify-between mb-12 group md:flex-row-reverse">
+                                <div className="absolute left-0 md:left-1/2 w-3 h-3 bg-white border-2 border-slate-400 rounded-full mt-2 transform md:-translate-x-1/2 ring-4 ring-slate-50"></div>
+                                <div className="md:w-[45%] mb-2 md:mb-0 md:pl-12">
+                                    <h3 className="text-xl font-bold text-slate-900">Associate Director</h3>
+                                    <div className="text-blue-700 font-medium mb-1">Northeastern University, CATLR</div>
+                                    <div className="text-sm text-slate-500 font-mono">July 2019 - July 2022</div>
+                                </div>
+                                <div className="md:w-[45%] md:pr-12 md:text-right">
+                                    <p className="text-slate-600 leading-relaxed text-sm">
+                                        Co-led multi-million-dollar NSF-funded research on advanced learning technologies (AI, AR/MR) for higher education. Designed inclusive faculty development programs integrating equity-centered teaching practices. Served as Assistant Professor (by Courtesy) in Mechanical & Industrial Engineering.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {/* BU */}
+                        <div className="relative pl-8 md:pl-0">
+                            <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 transform -translate-x-1/2"></div>
+                            <div className="md:flex items-start justify-between mb-12 group">
+                                <div className="absolute left-0 md:left-1/2 w-3 h-3 bg-white border-2 border-slate-400 rounded-full mt-2 transform md:-translate-x-1/2 ring-4 ring-slate-50"></div>
+                                <div className="md:w-[45%] mb-2 md:mb-0 md:text-right md:pr-12">
+                                    <h3 className="text-xl font-bold text-slate-900">Senior Associate for Research & Evaluation</h3>
+                                    <div className="text-blue-700 font-medium mb-1">Boston University</div>
+                                    <div className="text-sm text-slate-500 font-mono">Sept 2016 - Sept 2019</div>
+                                </div>
+                                <div className="md:w-[45%] md:pl-12">
+                                    <p className="text-slate-600 leading-relaxed text-sm">
+                                        Provided strategic consulting on learning environment design, leveraging cognitive science and educational data to enhance instructional effectiveness. Established faculty learning communities focused on emerging pedagogical approaches.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Stanford */}
+                        <div className="relative pl-8 md:pl-0">
+                            <div className="md:flex items-start justify-between mb-12 group md:flex-row-reverse">
+                                <div className="absolute left-0 md:left-1/2 w-3 h-3 bg-white border-2 border-slate-400 rounded-full mt-2 transform md:-translate-x-1/2 ring-4 ring-slate-50"></div>
+                                <div className="md:w-[45%] mb-2 md:mb-0 md:pl-12">
+                                    <h3 className="text-xl font-bold text-slate-900">Educational Programs Associate</h3>
+                                    <div className="text-blue-700 font-medium mb-1">Stanford University</div>
+                                    <div className="text-sm text-slate-500 font-mono">Sept 2014 - Sept 2016</div>
+                                </div>
+                                <div className="md:w-[45%] md:pr-12 md:text-right">
+                                    <p className="text-slate-600 leading-relaxed text-sm">
+                                        Led research and program design on student success, inclusive pedagogy, and technology-enhanced learning experiences. Supported leadership in implementing learner-centered educational innovations.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const PublicationCard = ({ type, title, subtitle, date, tags, link }) => (
+            <div className="group bg-white rounded-lg p-6 border border-slate-100 hover:border-blue-200 transition-all hover:shadow-lg h-full flex flex-col">
+                <div className="flex justify-between items-start mb-4">
+                    <span className="text-xs font-bold tracking-wider text-blue-600 uppercase bg-blue-50 px-2 py-1 rounded">{type}</span>
+                    <span className="text-slate-400 text-xs font-mono">{date}</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                    <a href={link} className="flex items-center gap-2">
+                        {title}
+                        <i data-lucide="external-link" width="14" height="14" className="opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </a>
+                </h3>
+                {subtitle && <p className="text-slate-600 text-sm mb-4 flex-grow">{subtitle}</p>}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                    {tags.map(tag => (
+                        <span key={tag} className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">#{tag}</span>
+                    ))}
+                </div>
+            </div>
+        );
+
+        const Scholarship = () => {
+            const publications = [
+                { type: "White Paper", title: "Advancing Human Agency in AI-Augmented Curriculum Design", subtitle: "A Multi-Agent Framework for Human-in-the-Loop Workflows. Proposes a methodology where educators orchestrate AI agents to maintain rigor.", date: "2025", tags: ["AI", "Curriculum Design", "Human-in-the-Loop"], link: "#" },
+                { type: "White Paper", title: "Retrieval-Augmented Generation (RAG) Models in Higher Ed", subtitle: "Building generalizable and extensible generative AI solutions. Explores how RAG can leverage institutional knowledge bases.", date: "Jan 2024", tags: ["Generative AI", "RAG", "EdTech"], link: "#" },
+                { type: "Journal Article", title: "Playful Talk: Negotiating Opportunities to Learn", subtitle: "Published in Journal of the Learning Sciences. Examines how students use humor and play to negotiate status and learning in collaborative groups.", date: "2015", tags: ["Learning Sciences", "Collaboration", "Equity"], link: "#" },
+                { type: "Journal Article", title: "Examining the Impact of Systemic Tensions on Agency and Identity", subtitle: "Published in Cognition and Instruction. A deep dive into how classroom tensions affect student identity formation in tech-mediated activities.", date: "2021", tags: ["Identity", "Agency", "Technology"], link: "#" },
+                { type: "Conference Paper", title: "Augmenting Learning with Augmented Reality", subtitle: "Exploring affordances of AR in supporting mastery of complex psychomotor tasks. NSF funded research.", date: "2023", tags: ["AR/VR", "Workforce Training", "Psychomotor Skills"], link: "#" },
+                { type: "Resource", title: "Educational AI System Prompt Library", subtitle: "A user-centered, open-access repository designed to assist educators in effectively integrating GPTs.", date: "Ongoing", tags: ["Open Education", "Prompt Engineering", "Faculty Support"], link: "#" }
+            ];
+
+            return (
+                <section id="scholarship" className="py-24 bg-white">
+                    <div className="max-w-6xl mx-auto px-6">
+                        <div className="mb-12">
+                            <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">Scholarship & Thought Leadership</h2>
+                            <p className="text-slate-600 max-w-2xl">My research and writing explore the boundaries of learning science, equity, and emerging technology. I am compelled to revisit critical questions about how we maintain human connection in increasingly digital environments.</p>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {publications.map((pub, index) => <PublicationCard key={index} {...pub} />)}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Contact = () => (
+            <section id="contact" className="py-24 bg-slate-900 text-white">
+                <div className="max-w-4xl mx-auto px-6 text-center">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8">Let's Continue the Conversation</h2>
+                    <p className="text-slate-300 mb-12 max-w-2xl mx-auto text-lg">I am always open to discussing the future of education, AI ethics, and strategies for fostering inclusive learning environments.</p>
+                    <div className="flex flex-col md:flex-row justify-center gap-6">
+                        <a href="mailto:nicholascwilson@gmail.com" className="flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors font-medium">
+                            <i data-lucide="mail"></i> Email Me
+                        </a>
+                        <a href="https://linkedin.com/in/ncwilson78" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors font-medium">
+                            <i data-lucide="linkedin"></i> Connect on LinkedIn
+                        </a>
+                    </div>
+                    <div className="mt-20 pt-8 border-t border-slate-800 text-slate-500 text-sm">
+                        <p>© 2026 Nicholas Wilson. All rights reserved.</p>
+                        <p className="mt-2">Based in Newton, MA | Innovating at Harvard University</p>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const App = () => {
+            useEffect(() => { lucide.createIcons(); });
+            return (
+                <div className="font-sans antialiased text-slate-900 bg-white selection:bg-blue-100 selection:text-blue-900">
+                    <Navigation />
+                    <Hero />
+                    <Philosophy />
+                    <Experience />
+                    <Scholarship />
+                    <Contact />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
