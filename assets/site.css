@@ -3,58 +3,30 @@
    Signature device: claim markers that show the evidential status of a statement. */
 
 :root {
-  --paper: #f2f4f2;
-  --paper-raised: #fafbfa;
-  --ink: #1d292d;
-  --ink-soft: #3b494e;
-  --muted: #5a686d;
-  --rule: #c8d0cf;
-  --link: #1c5a78;
-  --link-hover: #0f3e55;
-  --cited: #2c6a4e;
-  --expect: #865700;
-  --open: #7a3a6b;
-  --assume: #4a5a8a;
-  --focus: #1c5a78;
+  /* Palette drawn from the portrait: charcoal gray, cobalt blue, lavender */
+  --paper: #f7f7fa;
+  --paper-raised: #ffffff;
+  --ink: #24262c;
+  --ink-soft: #454955;
+  --muted: #6a6e7a;
+  --rule: #dcdae6;
+  --link: #1f4fbf;
+  --link-hover: #163a8c;
+  --cobalt: #1f4fbf;
+  --lavender: #b9b2e3;
+  --lavender-wash: #eeebf9;
+  --cited: #1f4fbf;
+  --expect: #6d5fbf;
+  --open: #6d5fbf;
+  --assume: #6a6e7a;
+  --focus: #1f4fbf;
 
   --serif: "Spectral", Georgia, "Times New Roman", serif;
   --sans: "Public Sans", "Helvetica Neue", Arial, sans-serif;
 
   --measure: 34em;
   --gutter: 16px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #151c1f;
-    --paper-raised: #1b2428;
-    --ink: #e4e9e8;
-    --ink-soft: #c9d1d0;
-    --muted: #9aa7aa;
-    --rule: #33403f;
-    --link: #8cc3dd;
-    --link-hover: #b5dbec;
-    --cited: #7cc4a0;
-    --expect: #e0b25a;
-    --open: #d79ac8;
-    --assume: #a9b6e6;
-    --focus: #8cc3dd;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #151c1f;
-  --paper-raised: #1b2428;
-  --ink: #e4e9e8;
-  --ink-soft: #c9d1d0;
-  --muted: #9aa7aa;
-  --rule: #33403f;
-  --link: #8cc3dd;
-  --link-hover: #b5dbec;
-  --cited: #7cc4a0;
-  --expect: #e0b25a;
-  --open: #d79ac8;
-  --assume: #a9b6e6;
-  --focus: #8cc3dd;
+  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -209,7 +181,9 @@ strong { font-weight: 600; }
 .hero h1 .q { display: block; }
 .hero .intro { margin-top: 1.4em; max-width: 32em; }
 .portrait figure { margin: 0; }
-.portrait img { width: 100%; max-width: 260px; filter: grayscale(0.15); }
+.portrait figure { position: relative; max-width: 260px; }
+.portrait figure::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; background: var(--lavender); z-index: 0; }
+.portrait img { position: relative; z-index: 1; width: 100%; max-width: 260px; }
 .portrait figcaption { font-family: var(--sans); font-size: 14px; color: var(--muted); margin-top: 0.6em; }
 
 .section { padding-top: 24px; }
@@ -272,7 +246,7 @@ strong { font-weight: 600; }
   font-size: 15px;
   line-height: 1.5;
   color: var(--ink-soft);
-  border-top: 2px solid var(--ink);
+  border-top: 3px solid var(--lavender);
   padding-top: 0.8em;
 }
 .facts dl { margin: 0; }
@@ -304,8 +278,8 @@ strong { font-weight: 600; }
 .pull {
   margin: 1.6em 0;
   padding: 0.9em 1.1em;
-  background: var(--paper-raised);
-  border-left: 3px solid var(--link);
+  background: var(--lavender-wash);
+  border-left: 3px solid var(--cobalt);
   color: var(--ink-soft);
 }
 .pull p:last-child { margin-bottom: 0; }
@@ -350,7 +324,7 @@ sup a { text-decoration: none; font-family: var(--sans); font-size: 0.75em; padd
 .dist::before { display: inline-block; content: ""; height: 0.55em; margin-right: 0.4em; background: currentColor; border-radius: 1px; vertical-align: 0.05em; }
 .dist--far  { color: var(--muted); }
 .dist--far::before  { width: 1.8em; }
-.dist--mid  { color: var(--expect); }
+.dist--mid  { color: #6d5fbf; }
 .dist--mid::before  { width: 1.1em; }
 .dist--near { color: var(--cited); }
 .dist--near::before { width: 0.5em; }
