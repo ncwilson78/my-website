@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Staff as learners: the VPAL Course Building Assistant | Nicholas Wilson</title>
-  <meta name="description" content="Case study: a multi-agent course-design system built for Harvard Online, studied through design-based research with the staff who use it.">
+  <title>Staff as learners: an AI course-design system | Nicholas Wilson</title>
+  <meta name="description" content="Case study: a multi-agent course-design system built at Harvard, studied through design-based research with the staff who use it.">
   <link rel="canonical" href="https://ncwilson78.github.io/my-website/work/staff-as-learners.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ncwilson78.github.io/my-website/work/staff-as-learners.html">
-  <meta property="og:title" content="Staff as learners: the VPAL Course Building Assistant">
-  <meta property="og:description" content="Case study: a multi-agent course-design system built for Harvard Online, studied through design-based research with the staff who use it.">
+  <meta property="og:title" content="Staff as learners: an AI course-design system">
+  <meta property="og:description" content="Case study: a multi-agent course-design system built at Harvard, studied through design-based research with the staff who use it.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,19 +36,19 @@
 
 <main id="main" class="wrap">
 <header class="doc-head">
-  <p class="kind"><a href="../#work">Case study</a>, Harvard VPAL, 2026 to present</p>
-  <h1>Staff as learners: the VPAL Course Building Assistant</h1>
+  <p class="kind"><a href="../#work">Case study</a>, Harvard University, 2026 to present</p>
+  <h1>Staff as learners: an AI course-design system</h1>
   <p class="lede">The people learning here are instructional designers, instructional technologists, and faculty, and much of what they are learning is how to build courses with AI. The tool I built is part of their curriculum, so I study its use the way I would study any learning setting.</p>
 </header>
 
 <div class="doc">
   <article class="doc-body prose">
     <h2 class="move">The question at the start</h2>
-    <p>Harvard Online courses are built by teams who turn faculty expertise into interactive learning sequences on the platform. When I began building an AI system for that work, I treated two questions as one: what should the system produce, and what should it leave to the people using it, given that what they practice themselves is what they get better at? Every release was treated as a conjecture about both questions at once.</p>
+    <p>At Harvard, courses are built by teams who turn faculty expertise into interactive learning sequences. When I began building an AI system for that work, I treated two questions as one: what should the system produce, and what should it leave to the people using it, given that what they practice themselves is what they get better at? Every release was treated as a conjecture about both questions at once.</p>
 
     <h2 class="move">What I built</h2>
     <p>The Course Building Assistant is a multi-agent course-design system that I designed and built with Claude Code, taking it from concept to live institutional use in about six months. It has three human approval gates, eight pedagogical styles, a taxonomy of 20 teaching-element types, and course outlines whose units link to prerequisites and course outcomes. Four evaluators review its output (a blind four-persona review, pedagogy fidelity, narrative arc, and copyediting), each fed deterministic pre-scans, and the codebase carries 437 automated tests across eight releases between June and September 2026. <span class="claim claim--cited">measured</span></p>
-    <p>It is in use across a growing set of Harvard Online builds, its manuscript-to-build-document pipeline is in pilot with VPAL's instructional technologists, and it has drawn interest from other Harvard units, including HBS Online and Harvard Business Impact. I wrote the build guide and the in-app manual and released an MIT-licensed, self-hosted distribution so that other teams can run and adapt the system independently.</p>
+    <p>It is in use across a growing set of Harvard course builds, its manuscript-to-build-document pipeline is in pilot with instructional technologists, and it has drawn interest from other Harvard units, including teams at Harvard Business School and Harvard Business Impact. I wrote the build guide and the in-app manual and released an MIT-licensed, self-hosted distribution so that other teams can run and adapt the system independently.</p>
 
     <h2 class="move">How I studied it</h2>
     <p>The study is design-based research, with each release treated as a conjecture to test.<sup><a href="#r1">1</a></sup> The qualitative side follows a grounded theory approach, letting categories emerge from conversations and interviews with staff, analytic memos, and field notes from build sessions.<sup><a href="#r2">2</a></sup> Cultural-Historical Activity Theory then structures how I analyze tensions among those categories within an activity system of people, tools, rules, and divided labor.<sup><a href="#r3">3</a></sup> The quantitative side uses traces such as time to build and how staff used each generated element.</p>
@@ -100,7 +100,7 @@
       <dt>Role</dt>
       <dd>Designer, developer, and researcher</dd>
       <dt>Learners</dt>
-      <dd>VPAL instructional designers, instructional technologists, and faculty</dd>
+      <dd>Harvard instructional designers, instructional technologists, and faculty</dd>
       <dt>Stack</dt>
       <dd>React, Vite, Vercel, Gemini and Claude APIs, Playwright; built with Claude Code</dd>
       <dt>Methods</dt>
