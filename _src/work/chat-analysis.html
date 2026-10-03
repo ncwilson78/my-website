@@ -1,0 +1,60 @@
+<!-- title: An AI-Assisted Tool for Activity-Theoretic Qualitative Analysis -->
+<!-- description: Project: a research tool for coding focus-group data through Cultural-Historical Activity Theory, with human confirmation at every analytic pass, built to support an organizational study of AI adoption. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#work">Project</a>, Office of the Vice Provost for Advances in Learning, Harvard, 2026</p>
+  <h1>An AI-Assisted Tool for Activity-Theoretic Qualitative Analysis</h1>
+  <p class="lede">Before designing any AI training, we set out to understand how teams were actually using AI in their work. The resulting focus-group study generated more data than a small team could code by hand, and I built this tool so that AI could assist with the analysis without displacing the researcher's judgment or compromising participants' privacy.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2>Why build it</h2>
+    <p>The AI Inventory, a qualitative study of AI use across seven functional areas of course development at Harvard, draws on activity theory and sociotechnical learning systems to examine how tools, rules, communities, and divisions of labor shape the way people take up new technology.<sup><a href="#r1">1</a></sup> Activity-theoretic analysis is demanding (it asks the analyst not only to code what participants say, but to locate tensions within and across elements of an activity system), and it is precisely the kind of work where an AI assistant could help or, if poorly designed, quietly flatten the analysis. Frankly, I was not willing to hand the interpretation to a model. The tool therefore treats the model as a coding assistant whose proposals the researcher confirms, revises, or rejects at every step.</p>
+
+    <h2>How it works</h2>
+    <ol>
+      <li><strong>Inductive open coding.</strong> The model proposes emergent codes grounded in participants' own language, including in-vivo phrases, negative cases, and conspicuous absences, along with a rationale and a confidence level for each. Nothing moves forward to the next pass until the researcher has confirmed it.</li>
+      <li><strong>Structural mapping.</strong> Working only from confirmed codes, the model maps each onto the nodes of the activity system (subject, mediating artifacts, object, rules, community, division of labor, and outcome) and identifies the most analytically significant pair of nodes in tension.</li>
+      <li><strong>Contradiction typing.</strong> Confirmed structural codes are then classified according to Engestr&ouml;m's four types of contradiction,<sup><a href="#r2">2</a></sup> and the model flags candidate instances of expansive learning, such as practices or divisions of labor that emerged from the ground up to resolve a tension.</li>
+      <li><strong>Synthesis and recommendations.</strong> Confirmed segments are clustered into findings, each with supporting evidence, negative cases, and a decision memo that names the specific codes and turns behind it. A cross-transcript pass works only on these second-order, human-reviewed findings to identify convergent, divergent, and structural patterns across groups.</li>
+    </ol>
+
+    <h2>Design commitments</h2>
+    <p><strong>A reflexivity guard.</strong> One of the most common failure modes in organizational research on technology is treating structural problems as individual skill gaps (i.e., recommending training for what is really a process or policy problem). The tool encodes that distinction directly: a finding located in rules or divisions of labor cannot be routed to professional development, and must instead be routed to a structural fix.</p>
+    <p><strong>Privacy by construction.</strong> Participants' names are replaced with consistent pseudonyms through a name bank that is stored separately and never included in anything sent to the model, and a final check screens findings for any names that slip through.</p>
+    <p><strong>An audit trail.</strong> Every analysis run records the model, temperature, prompt version, and codebook version, and every researcher decision (i.e., accepting, modifying, or rejecting a proposed code) is logged with its reason, so that the analysis remains transparent and, in principle, reproducible.</p>
+
+    <h2>What it reflects</h2>
+    <p>The tool brings together two strands of my work: a long-standing commitment to activity theory as a lens for understanding technology in practice,<sup><a href="#r3">3</a></sup> and a more recent focus on designing AI systems in which humans remain the architects of consequential decisions. The study's findings informed the office's acceptable use policy and the design of a staff AI course, discussed in <a href="../notes/assessment-with-ai.html">Evidence of Learning When AI Is Ubiquitous</a>.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Engestr&ouml;m, Y. (1987). <em>Learning by expanding: An activity-theoretical approach to developmental research</em>. Orienta-Konsultit.</li>
+      <li id="r2">Engestr&ouml;m, Y. (2001). Expansive learning at work: Toward an activity theoretical reconceptualization. <em>Journal of Education and Work, 14</em>(1), 133&ndash;156.</li>
+      <li id="r3">Wilson, N. C. (2021). Examining the impact of systemic tensions on agency and identity: The multiple positions of Reggie in production-centered, technology-mediated activity. <em>Cognition and Instruction, 39</em>(2), 181&ndash;209. <a href="https://doi.org/10.1080/07370008.2020.1820506">https://doi.org/10.1080/07370008.2020.1820506</a></li>
+    </ol>
+
+    <nav class="next" aria-label="More work">
+      More work
+      <ul>
+        <li><a href="pedagogy-evaluator.html">A Blind, Evidence-Anchored Evaluator for Course Design</a></li>
+        <li><a href="workplace-learning.html">AI-Assisted Course Authoring as Workplace Learning</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="Project facts">
+    <dl>
+      <dt>Role</dt>
+      <dd>Study director; designer and developer of the tool</dd>
+      <dt>Used for</dt>
+      <dd>Organizational AI Inventory (focus groups across seven functional areas of course development)</dd>
+      <dt>Methods</dt>
+      <dd>Cultural-Historical Activity Theory; inductive and structural coding; contradiction analysis; cross-case synthesis</dd>
+      <dt>Technology</dt>
+      <dd>Next.js, TypeScript, Prisma, SQLite, Gemini API</dd>
+      <dt>Availability</dt>
+      <dd>Private repository; walkthroughs available on request</dd>
+    </dl>
+  </aside>
+</div>

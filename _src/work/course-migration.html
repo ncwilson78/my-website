@@ -1,0 +1,46 @@
+<!-- title: Faithful Course Migration Between Learning Platforms -->
+<!-- description: Project: a migration tool that converts courses from Harvard's learning platform into edX packages, with a complete accounting of every element and no silent loss of content. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#work">Project</a>, Office of the Vice Provost for Advances in Learning, Harvard, 2026</p>
+  <h1>Faithful Course Migration Between Learning Platforms</h1>
+  <p class="lede">Moving a course from one platform to another is, in effect, a translation problem, and translations tend to lose things quietly. Having directed a large migration in the other direction, I built this tool on a simple premise: nothing a faculty member or designer created should disappear without someone knowing about it.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2>Context</h2>
+    <p>At HILT, I directed the migration of courses from edX to Harvard's learning experience platform for the Division of Continuing Education, which gave me a close view of how much design intent can be lost when teaching elements do not map neatly across systems. This tool addresses the reverse problem, converting a course exported from Harvard's platform into a package that can be imported into edX. The platform does not document its export format, so the tool's input schema is derived from real course exports, and anything that does not match stops the run with a precise account of what differed.</p>
+
+    <h2>How it works</h2>
+    <p>Each run validates the export, maps the course outline and its teaching elements onto edX structures, writes the package, and validates the result against edX's own checks. Some elements convert directly (e.g., multiple choice, polls, word clouds); others can only be approximated (e.g., categorization activities, rating scales, and reflections, which become self-assessed open responses); and a few have no equivalent at all, in which case they become staff-only placeholders rather than being dropped. Text that describes behavior specific to the original platform is preserved verbatim and flagged for a designer to revise.</p>
+
+    <h2>Design commitments</h2>
+    <p><strong>Nothing silently dropped.</strong> Every element in the source course receives a row in a migration report that records its destination and status (i.e., converted, approximated, placeholder, or failed), so course teams can see exactly what changed and where their judgment is needed.</p>
+    <p><strong>Determinism and traceability.</strong> Every edX component traces back to its source element, and the same export and configuration always produce an identical package, which makes the migration auditable and repeatable. An optional AI fallback for unconvertible elements is off by default, and when enabled its drafts are cached so that reruns remain identical.</p>
+    <p><strong>Human review where it matters.</strong> A round-trip comparison, run against a sandbox rather than a live course, lists anything the target platform dropped or rewrote on import, and a structured quality-assurance protocol (usable by a human tester or a browser-capable agent) compares the original and migrated courses for content fidelity, assessment behavior, and consistency.</p>
+    <p>The same principle runs through much of my recent work: AI and automation should carry the mechanical load, while the decisions that depend on pedagogical judgment are surfaced clearly to the people best positioned to make them.</p>
+
+    <nav class="next" aria-label="More work">
+      More work
+      <ul>
+        <li><a href="pedagogy-evaluator.html">A Blind, Evidence-Anchored Evaluator for Course Design</a></li>
+        <li><a href="workplace-learning.html">AI-Assisted Course Authoring as Workplace Learning</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="Project facts">
+    <dl>
+      <dt>Role</dt>
+      <dd>Designer and developer</dd>
+      <dt>Converts</dt>
+      <dd>Harvard learning platform course exports into edX (OLX) packages</dd>
+      <dt>Technology</dt>
+      <dd>Python, edX OLX, olxcleaner; web interface and command line</dd>
+      <dt>Status</dt>
+      <dd>In development</dd>
+      <dt>Availability</dt>
+      <dd>Private repository; walkthroughs available on request</dd>
+    </dl>
+  </aside>
+</div>

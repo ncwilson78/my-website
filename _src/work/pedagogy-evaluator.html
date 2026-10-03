@@ -1,0 +1,59 @@
+<!-- title: A Blind, Evidence-Anchored Evaluator for Course Design -->
+<!-- description: Project: a standalone LLM-as-judge that evaluates finished courses across pedagogical fidelity, learning science, and institutional quality, anchoring every finding to quoted evidence. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#work">Project</a>, Office of the Vice Provost for Advances in Learning, Harvard, 2026</p>
+  <h1>A Blind, Evidence-Anchored Evaluator for Course Design</h1>
+  <p class="lede">A generative model cannot reliably evaluate its own work, so we needed a discriminator: a separate agent, grounded in the learning sciences, that reviews a finished course on its own merits and tells designers specifically where and why it falls short.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2>Why build it</h2>
+    <p>As AI took on more of the drafting in course production, it became clear that review, rather than generation, would determine quality. The Pedagogy Evaluator is a standalone agent that evaluates completed course designs, whether a build document or a live course on the platform, and it is deliberately separated from the system that generates content. It never writes or revises course material; it produces structured evaluation reports only.</p>
+
+    <h2>How it evaluates</h2>
+    <p>The evaluator is structurally <em>blind</em>: it never sees the designer's intake form, stated goals, or pedagogical rationale, and it must infer the topic, audience, and instructional approach from the course itself. In this sense, it judges what a course <em>is</em>, rather than what it claims to be. Its review is organized around three weighted lenses:</p>
+    <ul>
+      <li><strong>Pedagogical framework fidelity (30 percent).</strong> A declared pedagogical style is treated as a claim to be tested against structural evidence (e.g., sequencing, learner and facilitator roles, interaction patterns), and when no style is declared, the evaluator infers one and states its confidence.</li>
+      <li><strong>Learning science (40 percent).</strong> The course is assessed against eight domains, including cognitive load, multimedia learning, desirable difficulties, productive failure, motivation, transfer, assessment, and universal design for learning.<sup><a href="#r1">1</a>,<a href="#r2">2</a></sup></li>
+      <li><strong>Institutional quality (30 percent).</strong> A blind peer review from four perspectives (student, faculty, instructional designer, and accreditation officer), with the faculty lens focused squarely on conceptual depth, coverage, and whether learners could plausibly achieve the stated objectives in the time allotted.</li>
+    </ul>
+    <p>The evaluator can also "take" a live course page by page as a simulated learner with a specified context (e.g., device, session length, prior knowledge, accessibility needs), and it checks external links with real requests rather than inferring whether they work.</p>
+
+    <h2>Design commitments</h2>
+    <p><strong>Evidence for every claim.</strong> Every finding must be anchored to quoted evidence with a section reference, and anything that can only be inferred from a description (rather than observed directly) must be labeled as inferred.</p>
+    <p><strong>Calibration over flattery.</strong> Language models tend toward generous, inflated feedback, and published work on LLM-as-judge evaluation documents systematic biases that warrant care.<sup><a href="#r3">3</a></sup> The evaluator is instructed to write as a critical peer reviewer, to avoid praise words, and to treat a course that merely meets expectations as a 70 rather than an 85.</p>
+    <p><strong>Actionable output.</strong> Every criterion that scores below 100 produces a specific, platform-level recommendation (i.e., which teaching element to add or change, with what settings, and where), prioritized by the size of the gap and the weight of its lens, and rendered as editorial annotations directly on the course content.</p>
+    <p>In practice, the evaluator's scores serve as a screen before human review, focusing designers' attention on the issues most worth their time.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257&ndash;285.</li>
+      <li id="r2">Mayer, R. E. (2009). <em>Multimedia learning</em> (2nd ed.). Cambridge University Press.</li>
+      <li id="r3">Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E. P., Zhang, H., Gonzalez, J. E., &amp; Stoica, I. (2023). Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. In <em>Advances in Neural Information Processing Systems 36</em> (Datasets and Benchmarks Track).</li>
+    </ol>
+
+    <nav class="next" aria-label="More work">
+      More work
+      <ul>
+        <li><a href="workplace-learning.html">AI-Assisted Course Authoring as Workplace Learning</a></li>
+        <li><a href="course-migration.html">Faithful Course Migration Between Learning Platforms</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="Project facts">
+    <dl>
+      <dt>Role</dt>
+      <dd>Designer and developer</dd>
+      <dt>Evaluates</dt>
+      <dd>Course build documents and live courses on Harvard's learning platform</dd>
+      <dt>Frameworks</dt>
+      <dd>Cognitive load theory; multimedia learning; desirable difficulties; productive failure; ICAP; universal design for learning</dd>
+      <dt>Technology</dt>
+      <dd>React, Vite, Gemini API, Playwright</dd>
+      <dt>Availability</dt>
+      <dd>Private repository; walkthroughs available on request</dd>
+    </dl>
+  </aside>
+</div>

@@ -38,23 +38,23 @@
 <header class="doc-head">
   <p class="kind"><a href="../#work">Case study</a>, Office of the Vice Provost for Advances in Learning, Harvard, 2026 to present</p>
   <h1>Measuring Learning in Courses Without Assignments or Instructor-Student Interaction: An Evidence-Centered Approach</h1>
-  <p class="lede">Completion records indicate that a learner was exposed to a course, not what the learner came to understand. This work develops an evidence model for courses without assignments or instructor-student interaction that specifies what can, and cannot, be claimed from the signals such courses produce.</p>
+  <p class="lede">Completion data tells us that someone was exposed to a course, but very little about what that person came to understand. In courses without assignments or instructor-student interaction, credible evidence of learning has to be designed into the activity itself, and the signals we rely on need to be honest about how much they can actually tell us.</p>
 </header>
 
 <div class="doc">
   <article class="doc-body prose">
     <h2>Context</h2>
-    <p>Much professional and non-degree learning takes place in courses without assignments or instructor-student interaction, where the default record of a learner is a sequence of pages viewed, videos watched, and activities submitted. Organizations that invest in such learning increasingly ask what their people actually learned, a question completion data cannot answer. One of the workstreams I direct addresses this problem, beginning with non-degree courses offered through my office and including a proposed pilot to provide organizational clients with defensible evidence of learning.</p>
+    <p>Much professional and non-degree learning takes place in self-paced courses, where the default record of a learner is a sequence of pages viewed, videos watched, and activities submitted. It should come as no surprise that organizations investing in this kind of learning increasingly want to know what their people actually learned, and that completion data cannot answer the question. One of the workstreams I direct takes up this problem, beginning with non-degree courses offered through my office and including a proposed pilot to give organizational clients defensible evidence of learning.</p>
 
-    <h2>Design</h2>
-    <p>The model follows evidence-centered design, which distinguishes the claims to be made about a learner, the observations that would support those claims, and the tasks that would elicit those observations.<sup><a href="#r1">1</a></sup> The target construct is contingent reasoning: understanding when an approach applies, when it does not, and why. This construct is closer to what organizations value than recall of a framework, and it draws on research showing that explaining one's reasoning is itself a powerful learning process.<sup><a href="#r2">2</a></sup></p>
+    <h2>The evidence model</h2>
+    <p>The model follows evidence-centered design, which distinguishes the claims we want to make about a learner, the observations that would support those claims, and the tasks that would elicit those observations.<sup><a href="#r1">1</a></sup> The target construct is <em>contingent reasoning</em> (i.e., understanding when an approach applies, when it does not, and why), which is arguably closer to what organizations care about than recall of a framework, and which draws on research showing that explaining one's reasoning is itself a powerful driver of learning.<sup><a href="#r2">2</a></sup></p>
     <ul>
-      <li><strong>Observations.</strong> Before and after instruction, learners commit to a position on a scenario, rate their confidence, and provide a brief rationale scored against a rubric, which supports claims about both reasoning and calibration.</li>
-      <li><strong>Tasks.</strong> All tasks are constructed from teaching elements the platform already supports, so the model can operate within existing courses without new platform development.</li>
-      <li><strong>Inferential distance.</strong> Every link between a signal and a claim about understanding carries an explicit statement of how far the inference extends, so that weak evidence cannot be reported as strong evidence.</li>
+      <li><strong>Observations.</strong> Before and after instruction, learners commit to a position on a scenario, rate their confidence, and offer a brief rationale scored against a rubric, which together support claims about both reasoning and calibration.</li>
+      <li><strong>Tasks.</strong> Every task is built from teaching elements the platform already supports, so the model can operate within existing courses without new development.</li>
+      <li><strong>Inferential distance.</strong> Every link between a signal and a claim about understanding carries an explicit statement of how far the inference reaches, so that weak evidence cannot masquerade as strong evidence.</li>
     </ul>
 
-    <p>The table below presents a simplified illustration of how the model treats different signals.</p>
+    <p>The table below offers a simplified illustration of how the model treats different signals.</p>
     <div class="table-wrap">
       <table class="evidence">
         <caption>From signal to claim, with the inferential distance between them</caption>
@@ -72,13 +72,12 @@
     </div>
 
     <h2>Design commitments</h2>
-    <p><strong>Instrumentation before measurement.</strong> A colleague and I are mapping, in Apache Superset, what each teaching element on the platform actually records before any measure is defined, because a measure that depends on data the platform never captures would fail silently while still producing a number.</p>
-    <p><strong>Absence of evidence reported as such.</strong> A learner who omits the rationale has provided no evidence of reasoning, and the model is designed to report that absence rather than infer a level from completion or time on page.</p>
-    <p><strong>Defined limits for synthetic evaluation.</strong> Simulated learners and LLM judges can help screen whether a task is clear and appropriately paced, but they cannot provide evidence that people learned, so claims about learning are reserved for real learners, with human review of rubric scoring.</p>
+    <p><strong>Instrumentation before measurement.</strong> A colleague and I are mapping, in Apache Superset, what each teaching element on the platform actually records before defining any measure, since a measure that depends on data the platform never captures would fail silently while still producing a number.</p>
+    <p><strong>Absence of evidence, reported as such.</strong> A learner who skips the rationale has offered no evidence of reasoning, and the model is designed to report that absence rather than infer a level from completion or time on page.</p>
+    <p><strong>A defined place for synthetic evaluation.</strong> Simulated learners and LLM judges can help screen whether a task is clear and appropriately paced, but they cannot provide evidence that people learned. Claims about learning are therefore reserved for real learners, with human review of rubric scoring.</p>
 
     <h2>Status</h2>
-    <p>Telemetry mapping is underway, and the feasibility pilot proposal is under review.</p>
-    <p>The same evidence model underlies the competency graph and tutoring design described in <a href="../notes/assessment-with-ai.html">Evidence of Learning When AI Is Ubiquitous</a>.</p>
+    <p>Telemetry mapping is underway, and the feasibility pilot proposal is under review. The same evidence model underlies the competency graph and AI tutor design described in <a href="../notes/assessment-with-ai.html">Evidence of Learning When AI Is Ubiquitous</a>.</p>
 
     <h2>References</h2>
     <ol class="refs">

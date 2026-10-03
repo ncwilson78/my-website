@@ -1,29 +1,34 @@
-<!-- title: Model Judgment and Deterministic Verification in AI-Assisted Course Authoring -->
-<!-- description: Essay: a working principle for AI authoring systems, in which language models are responsible for pedagogical judgment and requirements that can be verified are guaranteed by deterministic code. -->
+<!-- title: Humans as Architects in AI-Assisted Course Design -->
+<!-- description: Essay: what building an AI course-design system has taught us about context drift, fluency, evaluation, and keeping human judgment at the center of course design. -->
 <header class="doc-head">
   <p class="kind"><a href="../#notes">Essay</a>, October 2026</p>
-  <h1>Model Judgment and Deterministic Verification in AI-Assisted Course Authoring</h1>
-  <p class="lede">Developing the Course Building Assistant, an AI course-design system used by course teams developing online learning solutions for various audiences, led me to a working principle for AI authoring systems: language models should carry responsibility for pedagogical judgment, while any requirement that can be verified should be guaranteed by deterministic code.</p>
+  <h1>Humans as Architects: Model Judgment and Deterministic Verification in AI-Assisted Course Design</h1>
+  <p class="lede">Like many of us in the learning industry, we have been stress-testing how generative AI might reshape the course design process. Efficiency is certainly part of the ambition (i.e., shortening the path from ideation to production), but the goal that really buttresses this work is preserving, and ideally enhancing, human decision-making, creativity, and agency at the intersection of pedagogy and technology.</p>
 </header>
 
 <div class="doc">
   <article class="doc-body prose">
-    <h2>An instructive defect</h2>
-    <p>Early in development, generated modules repeatedly included transition text that previewed upcoming videos, contrary to explicit instructions in the prompt. Successive refinements to those instructions, including a self-check the model performed before producing output, did not resolve the problem. Tracing the output showed that the text originated in a deterministic post-processing step that assembled transitions between consecutive videos, rather than in the model's output. The remedy was a change to that step, together with a sanitization pass applied to every transition regardless of its source.</p>
-    <p>The episode was minor in itself, but it exposed a broader design tendency worth correcting: relying on instructions to a probabilistic system for guarantees that properly belong in code.</p>
+    <h2>From designers to auditors</h2>
+    <p>Our early experiments with general-purpose models were, frankly, disappointing. The outputs drew on the learning sciences in shallow ways (the all-too-common appeal to learning styles is perhaps the easiest example), and trying to produce substantive, rigorous learning experiences surfaced deeper limitations: context drift over long builds, inconsistencies across chat sessions and users, and incoherence across modules, lessons, and content that is repurposed for multiple courses. In a nutshell, AI was not making course teams more efficient. Rather, it was turning them into "auditors" who spent their time correcting the model's mistakes instead of applying their own creativity and expertise to the design.</p>
+    <p>The Course Building Assistant, a multi-agent course-design system used by course teams developing online learning solutions for various audiences, grew out of that frustration. One episode from its development captures, in miniature, the lesson I have taken from the work. Generated modules kept inserting transition text that previewed the next video, despite explicit instructions not to. I did what most of us would do and wrote progressively stricter prompt rules, then added a self-check the model ran before producing output, and the problem persisted (which was, to put it mildly, frustrating). When I finally traced it, the text was not coming from the model at all; a deterministic post-processing step was assembling those transitions after the model had finished. No prompt could have fixed text the model never wrote, and the episode pushed me to ask, more systematically, which parts of course design we were asking a probabilistic system to guarantee.</p>
 
-    <h2>A division of labor</h2>
-    <p>I now classify each requirement according to whether it calls for judgment or admits verification. The model decides what to teach, in what sequence, and how to express it, while code ensures what can be checked.</p>
-    <ul>
-      <li><strong>Citations.</strong> Testing showed that models could carry stale video timecodes over from elsewhere in source documents. A verifier now matches each video reference against its transcript and corrects the range, leaving ambiguous cases unchanged and flagged for human review.</li>
-      <li><strong>Structure.</strong> Faculty and staff manuscripts are imported through five deterministic parsers without an AI call, and any content a parser cannot classify is preserved and flagged rather than discarded.</li>
-      <li><strong>Platform constraints.</strong> Analysis of the platform's actual export format identified settings that the system had been asking the model to supply but that the platform does not support, and these were removed from every prompt and example.</li>
-      <li><strong>Evaluation.</strong> Deterministic scans for repeated activities and inconsistent naming are passed to the LLM evaluators as evidence to interpret, so the evaluators reason about verified counts rather than attempting to reproduce them.</li>
-    </ul>
-    <p>The same principle governs where AI runs at all. Human-authored manuscripts are exempt from automated AI review by default, and automated insertions that suit generated modules are disabled for content meant to be imported verbatim.</p>
+    <h2>What we are learning</h2>
+    <ol>
+      <li><strong>Models cannot plan; humans must be the architect.</strong> Large language models are remarkably fluent, but they lack the kind of world model needed to maintain logical consistency over long horizons, such as a full course build. In our system, people remain the "system controllers" who define objectives, constraints, and work patterns, and three human approval gates mark the points at which those decisions are made.</li>
+      <li><strong>Context drift requires hierarchical design.</strong> Because models generate text one token at a time, errors accumulate, and a model will effectively "forget" the original learning objectives as its context fills. We therefore decouple planning from rendering: course outlines carry explicit links to prerequisites and outcomes, and each module is generated against that plan rather than against the model's memory of it.</li>
+      <li><strong>Anything that can be checked belongs in code.</strong> The model decides what to teach, in what order, and how to say it, while deterministic code handles what can be verified. A verifier matches each video reference against its transcript and corrects the timecodes; five parsers bring faculty and staff manuscripts into the platform's structure without an AI call; and settings the platform does not actually support have been removed from every prompt.</li>
+      <li><strong>Fluency is not learning.</strong> Current models are optimized to produce "smooth" text, but learning often depends on friction, or productive struggle. We engineer prompts explicitly around frameworks such as ICAP to push generated activities toward constructive and interactive engagement rather than passive reading.<sup><a href="#r1">1</a></sup> Relatedly, the system is designed to augment faculty prose rather than replace it, since the faculty voice is, arguably, the most valuable thing a course carries.</li>
+      <li><strong>You need a discriminator.</strong> A generative model cannot reliably evaluate its own output, and published work on LLM-as-judge evaluation documents biases (e.g., toward position, length, and a model's own style) that warrant care.<sup><a href="#r2">2</a></sup> We lean on separate evaluator agents structured around specific frameworks, and we feed them deterministic counts (e.g., repeated activities, inconsistent naming) as evidence to interpret, so that their scores serve as a screen before human review.</li>
+    </ol>
 
-    <h2>Implications for the people in the loop</h2>
-    <p>Each requirement moved into code is also a decision about what reviewers no longer need to check and where their attention should go. When citations and structure are verified deterministically, instructional designers can concentrate on whether a sequence teaches well, the judgment that most depends on their expertise. My expectation is that this reallocation of attention matters as much for course quality as any gain in speed.</p>
+    <h2>Where human judgment goes</h2>
+    <p>Each requirement we move into code is also a decision about where reviewers' attention should go. When citations and structure are verified deterministically, instructional designers no longer have to spend their time catching mechanical errors, and they can focus instead on the questions that most depend on their expertise: whether a sequence builds understanding, whether an activity asks enough of the learner, and whether the faculty member's voice comes through. That reallocation of attention, more than any gain in speed, is what I hope systems like this one make possible.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Chi, M. T. H., &amp; Wylie, R. (2014). The ICAP framework: Linking cognitive engagement to active learning outcomes. <em>Educational Psychologist, 49</em>(4), 219&ndash;243.</li>
+      <li id="r2">Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E. P., Zhang, H., Gonzalez, J. E., &amp; Stoica, I. (2023). Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. In <em>Advances in Neural Information Processing Systems 36</em> (Datasets and Benchmarks Track).</li>
+    </ol>
 
     <nav class="next" aria-label="Related">
       Related
@@ -38,8 +43,8 @@
     <dl>
       <dt>System</dt>
       <dd>Course Building Assistant</dd>
-      <dt>Principle</dt>
-      <dd>Models exercise pedagogical judgment; code guarantees what can be verified; people retain the judgments that depend on their expertise.</dd>
+      <dt>Frameworks</dt>
+      <dd>ICAP; human-in-the-loop design; LLM-as-judge evaluation</dd>
     </dl>
   </aside>
 </div>
