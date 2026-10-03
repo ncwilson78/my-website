@@ -1,0 +1,64 @@
+<!-- title: When learners outgrew the tool -->
+<!-- description: Case study: NSF-funded augmented reality tutors for manufacturing work, and how a guide that reduced errors turned out to be working as training. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#work">Case study</a>, Northeastern University, 2019 to 2023</p>
+  <h1>When learners outgrew the tool</h1>
+  <p class="lede">An augmented reality guide that reduced assembly errors also stopped being needed after a few attempts, and that observation changed what the research was about.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2 class="move">The question at the start</h2>
+    <p>At Northeastern I was a co-principal investigator on an NSF Future of Work grant, working with engineers on augmented reality tutors for manufacturing tasks. The starting question was practical: could an AR guide help people perform complex assembly and inspection tasks more accurately than paper instructions? Our first study compared a static AR guide with paper instructions in an assembly task.<sup><a href="#r1">1</a></sup></p>
+
+    <h2 class="move">What we built</h2>
+    <p>The first guide presented step-by-step instructions in augmented reality, anchored to the physical task, and it behaved the same way for every participant on every attempt. Later systems added instrumentation: eye gaze, hand tracking, and galvanic skin response recorded while people worked, so that we could ask how novices and experts differ during a task, beyond whether they finished it.<sup><a href="#r2">2</a>,<a href="#r3">3</a></sup></p>
+
+    <h2 class="move">What the evidence showed</h2>
+    <p>The AR guide reduced assembly errors by 31 to 84 percent compared with paper instructions.<sup><a href="#r1">1</a></sup> <span class="claim claim--cited">measured</span> The more useful finding came from the participants themselves: after two or three attempts, most reported that they no longer needed the guide. A tool designed as permanent assistance was working as training.</p>
+    <p>That observation reframed the design problem, because if the guide teaches, it should recognize when the person using it has learned and step back, which requires some way to characterize expertise while the work is happening.</p>
+
+    <h2 class="move">What changed my thinking</h2>
+    <p>The follow-on studies turned to measurement, and in one of them, ten experts and ten novices completed an inspection task with AR guidance while we recorded multimodal data. Experts scanned visually faster, needed less instructional support, and worked with higher accuracy and efficiency, and novices showed a positive correlation between their perceived performance and the amplitude of their skin response, a pattern absent in experts.<sup><a href="#r3">3</a></sup> <span class="claim claim--cited">measured</span> A later journal article developed multimodal assessment of expertise from these signals.<sup><a href="#r4">4</a></sup></p>
+    <p>I came out of this work with a principle I still use: support should respond to evidence about the learner and recede as competence grows. I also came out with a caution: signals that separate groups of experts and novices do not yet justify a decision about one particular learner, and the step from a group difference to an individual adjustment is where most of the remaining work lies. <span class="claim claim--open">open question</span></p>
+
+    <h2 class="move">Where it led</h2>
+    <p>The same question now runs through my work at Harvard. The <a href="staff-as-learners.html">Course Building Assistant</a> treats VPAL staff as learners whose practice should shape what the tool does and leaves undone, and the <a href="evidence-of-learning.html">evidence model for ungraded courses</a> attaches an explicit inferential distance to every link between a signal and a claim, a direct response to the caution above. The tutor design sketched in <a href="../notes/assessment-with-ai.html">the assessment essay</a> borrows the fading principle from these studies.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Moghaddam, M., Wilson, N. C., Modestino, A. S., Jona, K., &amp; Marsella, S. C. (2021). Exploring augmented reality for worker assistance versus training. <em>Advanced Engineering Informatics, 50</em>, 101410.</li>
+      <li id="r2">Wilson, N. C., Kosa, M., Harteveld, C., Moghaddam, M., &amp; Jona, K. (2023). Exploring extended reality for scaffolding psychomotor-intensive tasks in complex real-world settings. In <em>Proceedings of the 17th International Conference of the Learning Sciences (ICLS 2023)</em>. International Society of the Learning Sciences.</li>
+      <li id="r3">Yoo, S., Harteveld, C., Wilson, N. C., Jona, K., &amp; Moghaddam, M. (2024). Exploring dimensions of expertise in AR-guided psychomotor tasks. In <em>2024 IEEE International Symposium on Mixed and Augmented Reality Adjunct (ISMAR-Adjunct)</em> (pp. 55&ndash;63). IEEE. <a href="https://doi.org/10.1109/ISMAR-Adjunct64951.2024.00023">https://doi.org/10.1109/ISMAR-Adjunct64951.2024.00023</a></li>
+      <li id="r4">Yoo, S., Harteveld, C., Wilson, N., Jona, K., &amp; Moghaddam, M. (2025). Multimodal assessment of expertise in AR-guided psychomotor tasks. <em>IEEE Transactions on Systems, Man, and Cybernetics: Systems, 55</em>(11), 8126&ndash;8141.</li>
+    </ol>
+
+    <nav class="next" aria-label="More work">
+      More work
+      <ul>
+        <li><a href="staff-as-learners.html">Staff as learners: the VPAL Course Building Assistant</a></li>
+        <li><a href="evidence-of-learning.html">Evidence of learning in courses without grades</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="Project facts">
+    <dl>
+      <dt>Role</dt>
+      <dd>Co-principal investigator</dd>
+      <dt>Funding</dt>
+      <dd>NSF Future of Work grant #2128743, $2.15M</dd>
+      <dt>Learners</dt>
+      <dd>Novices and experts performing manufacturing assembly and inspection tasks</dd>
+      <dt>Methods</dt>
+      <dd>Controlled comparisons, multimodal sensing (gaze, hand tracking, skin response), expert and novice contrasts</dd>
+      <dt>Read more</dt>
+      <dd>
+        <ul>
+          <li><a href="https://arxiv.org/abs/2409.11599">Expertise study on arXiv</a></li>
+          <li><a href="https://sail.coe.gatech.edu/projects">Project listing, SAIL lab</a></li>
+        </ul>
+      </dd>
+    </dl>
+  </aside>
+</div>

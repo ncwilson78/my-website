@@ -1,0 +1,79 @@
+<!-- title: Staff as learners: the VPAL Course Building Assistant -->
+<!-- description: Case study: a multi-agent course-design system built for Harvard Online, studied through design-based research with the staff who use it. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#work">Case study</a>, Harvard VPAL, 2026 to present</p>
+  <h1>Staff as learners: the VPAL Course Building Assistant</h1>
+  <p class="lede">The people learning here are instructional designers, instructional technologists, and faculty, and much of what they are learning is how to build courses with AI. The tool I built is part of their curriculum, so I study its use the way I would study any learning setting.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2 class="move">The question at the start</h2>
+    <p>Harvard Online courses are built by teams who turn faculty expertise into interactive learning sequences on the platform. When I began building an AI system for that work, I treated two questions as one: what should the system produce, and what should it leave to the people using it, given that what they practice themselves is what they get better at? Every release was treated as a conjecture about both questions at once.</p>
+
+    <h2 class="move">What I built</h2>
+    <p>The Course Building Assistant is a multi-agent course-design system that I designed and built on my own with Claude Code, taking it from concept to live institutional use in about six months. It has three human approval gates, eight pedagogical styles, a taxonomy of 20 teaching-element types, and course outlines whose units link to prerequisites and course outcomes. Four evaluators review its output (a blind four-persona review, pedagogy fidelity, narrative arc, and copyediting), each fed deterministic pre-scans, and the codebase carries 437 automated tests across eight releases between June and September 2026. <span class="claim claim--cited">measured</span></p>
+    <p>It is in use across a growing set of Harvard Online builds, its manuscript-to-build-document pipeline is in pilot with VPAL's instructional technologists, and it has drawn interest from other Harvard units, including HBS Online and Harvard Business Impact. I wrote the build guide and the in-app manual and released an MIT-licensed, self-hosted distribution so that other teams can run the system without me.</p>
+
+    <h2 class="move">How I studied it</h2>
+    <p>The study is design-based research, with each release treated as a conjecture to test.<sup><a href="#r1">1</a></sup> The qualitative side follows a grounded theory approach, letting categories emerge from conversations and interviews with staff, analytic memos, and field notes from build sessions.<sup><a href="#r2">2</a></sup> Cultural-Historical Activity Theory then structures how I analyze tensions among those categories within an activity system of people, tools, rules, and divided labor.<sup><a href="#r3">3</a></sup> The quantitative side uses traces such as time to build and how staff used each generated element.</p>
+    <p>That instrumentation logs whether staff kept, discarded, or regenerated each generated element, along with the revision instructions they gave and for which sections. The first dashboard reported that nearly every output was discarded. The cause was a counting error, with regenerations recorded as discards, and I corrected the query before drawing any conclusion from the data.</p>
+
+    <h2 class="move">What the evidence changed</h2>
+    <h3>Augmenting faculty work instead of replacing it</h3>
+    <p>Early versions generated modules from an intake form and source materials. Reviews surfaced a recurring failure: given a faculty member's existing prose, the system rewrote it rather than building on it. A production colleague questioned the premise of generating course content from nothing, and the team converged on the principle that AI should augment faculty work. I wrote that principle into the governing build guide as an augmentation mode, and I now track four recurring defects by count: regenerating faculty voice instead of augmenting it, splitting protagonist transcripts, fabricating citations or frameworks, and front-loading framework labels where the design calls for induction. A pilot now routes one agent role to a different model and scores both versions blind against those counts, with the decision rule set before any results are in.</p>
+
+    <h3>Building around the author</h3>
+    <p>The largest change came from noticing how staff actually start. Many arrive with a course already written, and when they hand-edited a generated build document and uploaded it again, the system regenerated over their edits. Manuscript import is now the leading path: five deterministic parsers bring a written course into the platform's structure with no AI call, one of them mirroring the document add-on the instructional technologists already use to build pages by hand, and hand edits survive a round trip byte for byte. Human-authored manuscripts also skip the automated AI review by default. Over several months the system shifted from an author that staff supervised to an assistant built around their authorship, and each of those changes was a product decision and a learning decision at once, because it changed what staff practice themselves and what they hand off.</p>
+
+    <h3>Where humans matter most</h3>
+    <p>One finding from the fieldwork reorganized how I think about efficiency. An instructional technologist explained that they valued building pages by hand because working through each element is where they ask whether it is the right teaching element in the first place, which makes the build a site of design thinking as much as production. Automating it wholesale would save hours and, I expect, remove the reflection that produces course quality. <span class="claim claim--expect">expectation</span> The response was to automate the checking rather than the building, reusing migration tooling that reviews a finished build and produces a punch list of remaining issues, and to make build automation opt-in, which also creates a natural comparison between staff who opt in and staff who build by hand.</p>
+    <p>A generated build document reduces the technologist's step to an estimated 30-minute review. <span class="claim claim--expect">estimate</span> Because automation is opt-in, any savings figure has to be stated as an adoption curve rather than a flat number.</p>
+
+    <div class="pull">
+      <p>A related lesson concerned my own code: a defect I tried to fix with progressively stricter prompt rules was being inserted by post-processing after the model had finished, which is the subject of <a href="../notes/model-and-code.html">What I stopped asking the model to do</a>.</p>
+    </div>
+
+    <h3>Several voices in one argument</h3>
+    <p>The same attention to how designers work drives the most unusual project in progress: a multivocal framework for courses whose faculty, from different disciplines, were never recorded together. Designers construct a conversation among them from separate recordings, and the framework flags where each discipline's perspective belongs in the narrative so the system can carry several voices through one coherent argument, for any set of disciplines.</p>
+
+    <h2 class="move">What I do not know yet</h2>
+    <ul>
+      <li>The four-evaluator review produces evidence-anchored scores, but I have not measured how well they agree with experienced instructional designers rating the same modules. <span class="claim claim--open">open question</span></li>
+      <li>The simulated-learner persona in the Pedagogy Evaluator is hand-authored and flagged as a placeholder until personas can be derived from real learner feedback. Persona and judge scores serve as a pre-release screen for clarity, pacing, and alignment, and evidence of learning is reserved for human reviewers and real learners.</li>
+      <li>Whether opt-in automation changes course quality, in either direction, is not yet measured. <span class="claim claim--open">open question</span></li>
+    </ul>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Design-Based Research Collective. (2003). Design-based research: An emerging paradigm for educational inquiry. <em>Educational Researcher, 32</em>(1), 5&ndash;8.</li>
+      <li id="r2">Glaser, B. G., &amp; Strauss, A. L. (1967). <em>The discovery of grounded theory: Strategies for qualitative research</em>. Aldine.</li>
+      <li id="r3">Engestr&ouml;m, Y. (1987). <em>Learning by expanding: An activity-theoretical approach to developmental research</em>. Orienta-Konsultit.</li>
+    </ol>
+
+    <nav class="next" aria-label="More work">
+      More work
+      <ul>
+        <li><a href="evidence-of-learning.html">Evidence of learning in courses without grades</a></li>
+        <li><a href="ar-tutors.html">When learners outgrew the tool</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="Project facts">
+    <dl>
+      <dt>Role</dt>
+      <dd>Sole designer and developer; researcher</dd>
+      <dt>Learners</dt>
+      <dd>VPAL instructional designers, instructional technologists, and faculty</dd>
+      <dt>Stack</dt>
+      <dd>React, Vite, Vercel, Gemini and Claude APIs, Playwright; built with Claude Code</dd>
+      <dt>Methods</dt>
+      <dd>Design-based research, grounded theory, Cultural-Historical Activity Theory, usage logs, time to build</dd>
+      <dt>Public precursor</dt>
+      <dd><a href="https://github.com/ncwilson78/LearningSequenceGenerator">Learning Sequence Generator</a></dd>
+      <dt>Availability</dt>
+      <dd>Private Harvard repository; I can walk through it in conversation</dd>
+    </dl>
+  </aside>
+</div>
