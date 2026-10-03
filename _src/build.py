@@ -31,8 +31,8 @@ HEAD = """<!doctype html>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../#work"{work_current}>Work</a></li>
-        <li><a href="../#notes"{notes_current}>Notes</a></li>
-        <li><a href="../#commitments">How I work</a></li>
+        <li><a href="../#notes"{notes_current}>Essays</a></li>
+        <li><a href="../#commitments">Principles</a></li>
         <li><a href="../#experience">Experience</a></li>
         <li><a href="../#contact">Contact</a></li>
       </ul>

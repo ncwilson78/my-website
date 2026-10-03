@@ -1,0 +1,87 @@
+<!-- title: AI-Assisted Course Authoring as Workplace Learning -->
+<!-- description: Case study: design-based research on the Course Building Assistant, a multi-agent course-design system used for Harvard Online course builds, approached as a setting for workplace learning in which course teams' practice informs the design. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#work">Case study</a>, Office of the Vice Provost for Advances in Learning, Harvard, 2026 to present</p>
+  <h1>AI-Assisted Course Authoring as Workplace Learning</h1>
+  <p class="lede">A design-based research program on the Course Building Assistant, a multi-agent course-design system used by course teams developing online learning solutions for various audiences, including Harvard Online. The program approaches the system's use as workplace learning, in which the instructional designers, technologists, and faculty who use it develop new professional practice and that practice informs the design.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2>Context</h2>
+    <p>AI authoring tools are usually evaluated on productivity, but when course teams are learning to design with AI, the tool also determines which parts of the craft they continue to practice and which they hand off, so its design carries consequences for workplace learning as well as output. The guiding question was therefore twofold: which parts of course design the system should perform, and which should remain with the people whose expertise it is meant to extend.</p>
+
+    <h2>The system</h2>
+    <p>The Course Building Assistant, which I designed and built with Claude Code, coordinates specialized agents through three human approval gates. It supports eight pedagogical styles, a taxonomy of 20 teaching-element types, and course outlines whose units are linked to prerequisites and course outcomes. Four evaluators review each draft for persona-based quality, pedagogical fidelity, narrative coherence, and copyediting, each informed by deterministic pre-scans. The system moved from concept to institutional use in about six months, across eight releases between June and September 2026 and with 437 automated tests.</p>
+    <p>It is in use across a growing set of Harvard Online course builds, and its manuscript-to-build-document pipeline is in pilot with instructional technologists. A build guide, an in-app manual, and an MIT-licensed, self-hosted distribution allow other teams to run and adapt the system independently.</p>
+
+    <h2>Method</h2>
+    <p>The work follows design-based research, in which each release functions as a conjecture tested in practice and revised in light of what practitioners do.<sup><a href="#r1">1</a></sup> Qualitative data include interviews and conversations with course team members, analytic memos, and field notes from build sessions, analyzed through a grounded theory approach that allows categories to emerge from the data.<sup><a href="#r2">2</a></sup> Cultural-Historical Activity Theory then frames the tensions among those categories within an activity system of people, tools, rules, and divisions of labor.<sup><a href="#r3">3</a></sup> Quantitative traces include time to build and usage logs recording how each generated element was kept, revised, or regenerated. I verify these traces against the qualitative record before drawing conclusions from them, consistent with established criteria for trustworthiness in naturalistic inquiry.<sup><a href="#r4">4</a></sup></p>
+
+    <h2>Findings</h2>
+    <p>Three findings from this fieldwork redirected the design of the system.</p>
+
+    <h3>Augmenting faculty expertise</h3>
+    <p>Reviews of early modules showed that, when given a faculty member's existing prose, the system tended to rewrite it rather than build on it. In discussion with production colleagues, the team adopted the principle that AI should augment faculty work, and I codified that principle in the governing build guide. Four recurring defects are now tracked by count rather than impression: replacing faculty voice instead of extending it, fragmenting interview transcripts, fabricating citations or frameworks, and introducing framework labels where the design calls for inductive learning. A current pilot compares two model configurations for one agent role using blind scoring against those counts, with the decision rule specified before results are available.</p>
+
+    <h3>Designing around authorship</h3>
+    <p>Fieldwork showed that many course teams begin with a manuscript they have already written, and that early versions of the system could overwrite their revisions. Manuscript import is now the primary workflow in the system: five deterministic parsers bring a written course into the platform's structure without an AI call, edits survive a round trip exactly, and human-authored manuscripts are exempt from automated AI review by default. Over several months the system moved from an author that staff supervised to an assistant organized around their authorship, and each of these changes was at once a product decision and a learning design decision, because each altered what course teams practice themselves.</p>
+
+    <h3>Locating human judgment</h3>
+    <p>Instructional technologists described building pages by hand as the point at which they ask whether each element is the right teaching choice, which positions the build as a site of reflection-in-action as well as production.<sup><a href="#r5">5</a></sup> Wholesale automation would save time while, I expect, removing a source of course quality. The design response was to automate verification rather than construction, producing a punch list of remaining issues for a finished build, and to make build automation optional. A generated build document reduces the technologist's step to an estimated 30-minute review, and because adoption is optional, efficiency gains are best reported as an adoption curve rather than a single figure. The optional design also creates a natural comparison between teams who automate and teams who build by hand.</p>
+
+    <h3>Extending the approach</h3>
+    <p>The same attention to how designers work informs a multivocal framework now in development for courses whose faculty, drawn from different disciplines, were never recorded together. The framework indicates where each discipline's perspective belongs in the narrative so that a course can carry several faculty voices through a single coherent argument.</p>
+
+    <div class="pull">
+      <p>A related design principle, separating what the model should judge from what code should guarantee, is discussed in <a href="../notes/model-and-code.html">Model Judgment and Deterministic Verification in AI-Assisted Course Authoring</a>.</p>
+    </div>
+
+    <h2>Limitations and open questions</h2>
+    <ul>
+      <li>Agreement between the automated evaluators and experienced instructional designers rating the same modules has not yet been measured, a known concern given documented biases in LLM-as-judge evaluation.<sup><a href="#r6">6</a></sup></li>
+      <li>The simulated-learner persona used in pre-release review is provisional and will be replaced by personas derived from real learner feedback. Persona and judge scores are treated as a screen for clarity, pacing, and alignment, and claims about learning are reserved for human reviewers and real learners.</li>
+      <li>The effect of optional automation on course quality has not yet been assessed.</li>
+    </ul>
+
+    <h2>Acknowledgments</h2>
+    <p>This work depends on the course teams, instructional technologists, and faculty who use the system and share their practice, and on production colleagues whose questions shaped its direction.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Design-Based Research Collective. (2003). Design-based research: An emerging paradigm for educational inquiry. <em>Educational Researcher, 32</em>(1), 5&ndash;8.</li>
+      <li id="r2">Glaser, B. G., &amp; Strauss, A. L. (1967). <em>The discovery of grounded theory: Strategies for qualitative research</em>. Aldine.</li>
+      <li id="r3">Engestr&ouml;m, Y. (1987). <em>Learning by expanding: An activity-theoretical approach to developmental research</em>. Orienta-Konsultit.</li>
+      <li id="r4">Lincoln, Y. S., &amp; Guba, E. G. (1985). <em>Naturalistic inquiry</em>. Sage.</li>
+      <li id="r5">Sch&ouml;n, D. A. (1983). <em>The reflective practitioner: How professionals think in action</em>. Basic Books.</li>
+      <li id="r6">Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E. P., Zhang, H., Gonzalez, J. E., &amp; Stoica, I. (2023). Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. In <em>Advances in Neural Information Processing Systems 36</em> (Datasets and Benchmarks Track).</li>
+    </ol>
+
+    <nav class="next" aria-label="More work">
+      More work
+      <ul>
+        <li><a href="evidence-of-learning.html">Measuring Learning in Ungraded Courses</a></li>
+        <li><a href="ar-tutors.html">From Assistance to Adaptive Scaffolding</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="Project facts">
+    <dl>
+      <dt>Role</dt>
+      <dd>Designer, developer, and lead researcher</dd>
+      <dt>Used for</dt>
+      <dd>Harvard Online course builds</dd>
+      <dt>Participants</dt>
+      <dd>Instructional designers, instructional technologists, and faculty</dd>
+      <dt>Methods</dt>
+      <dd>Design-based research; grounded theory; Cultural-Historical Activity Theory; usage logs and time to build</dd>
+      <dt>Technology</dt>
+      <dd>React, Vite, Vercel, Gemini and Claude APIs, Playwright</dd>
+      <dt>Public precursor</dt>
+      <dd><a href="https://github.com/ncwilson78/LearningSequenceGenerator">Learning Sequence Generator</a></dd>
+      <dt>Availability</dt>
+      <dd>Private repository; walkthroughs available on request</dd>
+    </dl>
+  </aside>
+</div>

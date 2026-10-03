@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>What I stopped asking the model to do | Nicholas Wilson</title>
-  <meta name="description" content="A defect I tried to fix with stricter prompts came from my own code, and it changed how I divide work between model judgment and deterministic guarantees.">
+  <title>Model Judgment and Deterministic Verification in AI-Assisted Course Authoring | Nicholas Wilson</title>
+  <meta name="description" content="Essay: a working principle for AI authoring systems, in which language models are responsible for pedagogical judgment and requirements that can be verified are guaranteed by deterministic code.">
   <link rel="canonical" href="https://ncwilson78.github.io/my-website/notes/model-and-code.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ncwilson78.github.io/my-website/notes/model-and-code.html">
-  <meta property="og:title" content="What I stopped asking the model to do">
-  <meta property="og:description" content="A defect I tried to fix with stricter prompts came from my own code, and it changed how I divide work between model judgment and deterministic guarantees.">
+  <meta property="og:title" content="Model Judgment and Deterministic Verification in AI-Assisted Course Authoring">
+  <meta property="og:description" content="Essay: a working principle for AI authoring systems, in which language models are responsible for pedagogical judgment and requirements that can be verified are guaranteed by deterministic code.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,8 +25,8 @@
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../#work">Work</a></li>
-        <li><a href="../#notes">Notes</a></li>
-        <li><a href="../#commitments">How I work</a></li>
+        <li><a href="../#notes">Essays</a></li>
+        <li><a href="../#commitments">Principles</a></li>
         <li><a href="../#experience">Experience</a></li>
         <li><a href="../#contact">Contact</a></li>
       </ul>
@@ -36,48 +36,53 @@
 
 <main id="main" class="wrap">
 <header class="doc-head">
-  <p class="kind"><a href="../#notes">Note</a>, October 2026</p>
-  <h1>What I stopped asking the model to do</h1>
-  <p class="lede">While building the Course Building Assistant, an AI course-design system used by course teams developing online learning solutions for various audiences, my working theory of quality shifted from writing better instructions to dividing the work more clearly between the model and deterministic code. A single defect in June 2026 started that shift.</p>
+  <p class="kind"><a href="../#notes">Essay</a>, October 2026</p>
+  <h1>Model Judgment and Deterministic Verification in AI-Assisted Course Authoring</h1>
+  <p class="lede">Developing the Course Building Assistant, an AI course-design system used by course teams developing online learning solutions for various audiences, led me to a working principle for AI authoring systems: language models should carry responsibility for pedagogical judgment, while any requirement that can be verified should be guaranteed by deterministic code.</p>
 </header>
 
 <div class="doc">
   <article class="doc-body prose">
-    <h2>The bug I tried to fix with prompts</h2>
-    <p>Generated modules kept producing bridge text between consecutive videos that previewed the next video ("In the next video, we'll explore&hellip;") and trailed off into a truncated script excerpt. I read it as a model failure, so I added an absolute rule against preview language, expanded the pre-output self-check to scan for those phrases, and tightened the transition rule, and the pattern persisted. When I traced it, the text came from my own post-processing code: a function that inserted a bridge between back-to-back videos pulled the next video's first line, cut it at 80 characters, and dropped it into the exact template the prompt forbade.</p>
-    <p>No prompt rule could have fixed text the model never wrote. The fix had two layers: the automatically inserted element now uses neutral wording, and a sanitizer strips preview language from any bridge element regardless of which source produced it.</p>
+    <h2>An instructive defect</h2>
+    <p>Early in development, generated modules repeatedly included transition text that previewed upcoming videos, contrary to explicit instructions in the prompt. Successive refinements to those instructions, including a self-check the model performed before producing output, did not resolve the problem. Tracing the output showed that the text originated in a deterministic post-processing step that assembled transitions between consecutive videos, rather than in the model's output. The remedy was a change to that step, together with a sanitization pass applied to every transition regardless of its source.</p>
+    <p>The episode was minor in itself, but it exposed a broader design tendency worth correcting: relying on instructions to a probabilistic system for guarantees that properly belong in code.</p>
 
-    <h2>What changed in how I build</h2>
-    <p>The lesson concerned less that one function than the habit behind it, since I had been asking the prompt to carry guarantees that belonged in code. I now sort each requirement by whether it calls for judgment or can be checked. The model decides what to teach, in what order, and how to phrase it, while code handles what can be verified:</p>
+    <h2>A division of labor</h2>
+    <p>I now classify each requirement according to whether it calls for judgment or admits verification. The model decides what to teach, in what sequence, and how to express it, while code ensures what can be checked.</p>
     <ul>
-      <li><strong>Citations.</strong> Testing showed the model copying stale video timecodes from elsewhere in uploaded documents. A verifier now matches each video's content against the real transcript and corrects the range, and it leaves ambiguous cases untouched rather than guessing.</li>
-      <li><strong>Structure.</strong> Instructors' own manuscripts import through five deterministic parsers with no AI call, and anything a parser cannot classify is preserved and flagged instead of dropped.</li>
-      <li><strong>Platform settings.</strong> Research on the platform's real export format showed that two fields my prompts had been asking the model to fill in do not exist on the platform, so I removed them from every prompt and worked example.</li>
-      <li><strong>Evaluation.</strong> Deterministic scans for repeated activities and near-duplicate name spellings go to the LLM judges as evidence to verify, so the judges interpret the counts instead of recomputing them.</li>
+      <li><strong>Citations.</strong> Testing showed that models could carry stale video timecodes over from elsewhere in source documents. A verifier now matches each video reference against its transcript and corrects the range, leaving ambiguous cases unchanged and flagged for human review.</li>
+      <li><strong>Structure.</strong> Faculty and staff manuscripts are imported through five deterministic parsers without an AI call, and any content a parser cannot classify is preserved and flagged rather than discarded.</li>
+      <li><strong>Platform constraints.</strong> Analysis of the platform's actual export format identified settings that the system had been asking the model to supply but that the platform does not support, and these were removed from every prompt and example.</li>
+      <li><strong>Evaluation.</strong> Deterministic scans for repeated activities and inconsistent naming are passed to the LLM evaluators as evidence to interpret, so the evaluators reason about verified counts rather than attempting to reproduce them.</li>
     </ul>
-    <p>The same sorting changed where AI runs at all. Human-authored manuscripts now skip the automated quality review by default. A safety net that inserted reflections between back-to-back videos also no longer touches manuscript pages, after I found it splicing generated prompts into content meant to import verbatim.</p>
+    <p>The same principle governs where AI runs at all. Human-authored manuscripts are exempt from automated AI review by default, and automated insertions that suit generated modules are disabled for content meant to be imported verbatim.</p>
 
-    <h2>Why this is a learning design question</h2>
-    <p>Each requirement moved into code is a decision about what the people using the system can stop checking and what they still need to judge. When citations are verified deterministically, a reviewer's attention can go to whether a sequence teaches well, and that is the judgment I most want instructional designers to keep practicing. <span class="claim claim--expect">expectation</span></p>
+    <h2>Implications for the people in the loop</h2>
+    <p>Each requirement moved into code is also a decision about what reviewers no longer need to check and where their attention should go. When citations and structure are verified deterministically, instructional designers can concentrate on whether a sequence teaches well, the judgment that most depends on their expertise. My expectation is that this reallocation of attention matters as much for course quality as any gain in speed, although it has not yet been measured.</p>
 
-    <h2>What I still do not know</h2>
-    <p>The four-evaluator review and the standalone Pedagogy Evaluator produce evidence-anchored scores, but I have not yet measured how well those scores agree with experienced instructional designers rating the same modules. <span class="claim claim--open">open question</span> The simulated-learner persona in the evaluator is also hand-authored and flagged as a placeholder until personas can be derived from real learner feedback. My expectation is that agreement will be uneven across dimensions, stronger on structural checks such as workload and alignment and weaker on whether a sequence will hold a particular learner's attention, <span class="claim claim--expect">expectation</span> and I would want that result in hand before treating any evaluator score as evidence of learning.</p>
+    <h2>Open questions</h2>
+    <p>The automated evaluators produce scores anchored to quoted evidence, but their agreement with experienced instructional designers rating the same modules has not yet been measured, and published work on LLM-as-judge evaluation documents position, verbosity, and self-preference biases that warrant caution.<sup><a href="#r1">1</a></sup> I expect agreement to vary by dimension, higher for structural properties such as workload and alignment and lower for whether a sequence will sustain a particular learner's engagement. Until that relationship is established, evaluator scores serve as a screen before human review and are not treated as evidence of learning.</p>
+
+    <h2>References</h2>
+    <ol class="refs">
+      <li id="r1">Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E. P., Zhang, H., Gonzalez, J. E., &amp; Stoica, I. (2023). Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. In <em>Advances in Neural Information Processing Systems 36</em> (Datasets and Benchmarks Track).</li>
+    </ol>
 
     <nav class="next" aria-label="Related">
       Related
       <ul>
-        <li><a href="../work/staff-as-learners.html">Staff as learners: an AI course-design system</a></li>
-        <li><a href="assessment-with-ai.html">Assessment when every learner has an assistant</a></li>
+        <li><a href="../work/workplace-learning.html">AI-Assisted Course Authoring as Workplace Learning</a></li>
+        <li><a href="assessment-with-ai.html">Evidence of Learning When AI Is Ubiquitous</a></li>
       </ul>
     </nav>
   </article>
 
-  <aside class="facts" aria-label="About this note">
+  <aside class="facts" aria-label="About this essay">
     <dl>
       <dt>System</dt>
       <dd>Course Building Assistant</dd>
       <dt>Principle</dt>
-      <dd>The model decides what to teach and how to say it; code guarantees what can be checked.</dd>
+      <dd>Models exercise pedagogical judgment; code guarantees what can be verified; people retain the judgments that depend on their expertise.</dd>
     </dl>
   </aside>
 </div>

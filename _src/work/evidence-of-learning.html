@@ -1,64 +1,61 @@
-<!-- title: Evidence of learning in courses without grades -->
-<!-- description: Case study: an evidence-centered model for measuring contingent reasoning in courses without grades, with an explicit inferential distance on every signal-to-claim link. -->
+<!-- title: Measuring Learning in Ungraded Courses -->
+<!-- description: Case study: an evidence-centered model for measuring contingent reasoning in courses without grades, with an explicit inferential distance on every link between a signal and a claim. -->
 <header class="doc-head">
   <p class="kind"><a href="../#work">Case study</a>, Office of the Vice Provost for Advances in Learning, Harvard, 2026 to present</p>
-  <h1>Evidence of learning in courses without grades</h1>
-  <p class="lede">Completion data shows that someone was exposed to a course. Organizations that send their people through courses and training programs increasingly want to know what those people learned, and in an ungraded course the evidence for that claim has to be designed.</p>
+  <h1>Measuring Learning in Ungraded Courses: An Evidence-Centered Approach</h1>
+  <p class="lede">Completion records indicate that a learner was exposed to a course, not what the learner came to understand. This work develops an evidence model for ungraded courses that specifies what can, and cannot, be claimed from the signals such courses produce.</p>
 </header>
 
 <div class="doc">
   <article class="doc-body prose">
-    <h2 class="move">The question at the start</h2>
-    <p>Much of the learning adults do for work carries no grades, and the default record of a learner is a trail of pages viewed, videos watched, and activities submitted. <span class="claim claim--assume">assumption</span> One of the three workstreams I direct in my office asks how to measure learning rather than completion in courses like these, starting with non-degree courses offered through my office, including a pilot proposal to give enterprise clients defensible evidence of what their people learned. The question underneath is which observable behaviors justify a claim that someone understood something, and what a system should say when none do.</p>
+    <h2>Context</h2>
+    <p>Much professional and non-degree learning carries no grades, and the default record of a learner is a sequence of pages viewed, videos watched, and activities submitted. Organizations that invest in such learning increasingly ask what their people actually learned, a question completion data cannot answer. One of the workstreams I direct addresses this problem, beginning with non-degree courses offered through my office and including a proposed pilot to provide organizational clients with defensible evidence of learning.</p>
 
-    <h2 class="move">What I designed</h2>
-    <p>The model follows evidence-centered design, which separates what we want to claim about a learner, what observations would support the claim, and which tasks would elicit those observations.<sup><a href="#r1">1</a></sup> The construct is contingent reasoning: knowing when an approach applies and when it does not, which is closer to what organizations care about than recall of a framework.</p>
+    <h2>Design</h2>
+    <p>The model follows evidence-centered design, which distinguishes the claims to be made about a learner, the observations that would support those claims, and the tasks that would elicit those observations.<sup><a href="#r1">1</a></sup> The target construct is contingent reasoning: understanding when an approach applies, when it does not, and why. This construct is closer to what organizations value than recall of a framework, and it draws on research showing that explaining one's reasoning is itself a powerful learning process.<sup><a href="#r2">2</a></sup></p>
     <ul>
-      <li><strong>Observations.</strong> Before and after instruction, learners commit to a position on a scenario, rate their confidence, and give a short rationale scored against a rubric.</li>
-      <li><strong>Tasks.</strong> Every task is built from teaching elements the platform already has, so the model can run in existing courses without new platform features.</li>
-      <li><strong>Inferential distance.</strong> Every link between a signal and a claim about understanding carries an explicit statement of how far the inference reaches, so that a weak signal cannot be reported as strong evidence.</li>
+      <li><strong>Observations.</strong> Before and after instruction, learners commit to a position on a scenario, rate their confidence, and provide a brief rationale scored against a rubric, which supports claims about both reasoning and calibration.</li>
+      <li><strong>Tasks.</strong> All tasks are constructed from teaching elements the platform already supports, so the model can operate within existing courses without new platform development.</li>
+      <li><strong>Inferential distance.</strong> Every link between a signal and a claim about understanding carries an explicit statement of how far the inference extends, so that weak evidence cannot be reported as strong evidence.</li>
     </ul>
 
-    <p>The rows below illustrate the reasoning behind that last element. They are simplified from the working model. <span class="claim claim--assume">illustrative</span></p>
+    <p>The table below presents a simplified illustration of how the model treats different signals.</p>
     <div class="table-wrap">
       <table class="evidence">
-        <caption>From signal to claim, with the distance between them</caption>
+        <caption>From signal to claim, with the inferential distance between them</caption>
         <thead>
           <tr><th scope="col">Signal</th><th scope="col">Claim it can support</th><th scope="col">Distance to a claim about understanding</th></tr>
         </thead>
         <tbody>
           <tr><td>Page viewed or video completed</td><td>The learner was exposed to the material</td><td><span class="dist dist--far">Far</span></td></tr>
-          <tr><td>Commitment made before instruction</td><td>The learner's starting position</td><td><span class="dist dist--far">Far</span>, though necessary as a baseline</td></tr>
+          <tr><td>Commitment made before instruction</td><td>The learner's initial position</td><td><span class="dist dist--far">Far</span>, though necessary as a baseline</td></tr>
           <tr><td>Confidence paired with correctness</td><td>How well the learner's confidence tracks accuracy</td><td><span class="dist dist--mid">Moderate</span></td></tr>
           <tr><td>Rubric-scored rationale, before and after</td><td>A change in the learner's contingent reasoning</td><td><span class="dist dist--near">Near</span></td></tr>
-          <tr><td>Reasoning applied to a scenario with new conditions</td><td>Transfer of that reasoning</td><td><span class="dist dist--near">Near</span>, if the scenario is genuinely new</td></tr>
+          <tr><td>Reasoning applied to a scenario with new conditions</td><td>Transfer of that reasoning</td><td><span class="dist dist--near">Near</span>, if the scenario is genuinely novel</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h2 class="move">Decisions that shaped the model</h2>
-    <p>The order of work mattered more than I first assumed. A colleague and I are mapping, in Apache Superset, what each teaching element on the platform actually records before defining any measure, because a measure that depends on a field the platform never writes would fail silently and still produce a number.</p>
-    <p>Missing evidence is treated as information, since a learner who skips the rationale has produced no evidence of reasoning, and the model is designed to report that absence rather than infer a level from completion or time on page, so being explicit when no signal justifies a claim is part of the design.</p>
-    <p>Synthetic evaluation has a defined and limited place in the model. Simulated learners and LLM judges are useful for screening whether a task is clear and well paced, but they cannot produce evidence that real people learned, so the model reserves claims about learning for real learners, with human review of the rubric scoring.</p>
+    <h2>Design commitments</h2>
+    <p><strong>Instrumentation before measurement.</strong> A colleague and I are mapping, in Apache Superset, what each teaching element on the platform actually records before any measure is defined, because a measure that depends on data the platform never captures would fail silently while still producing a number.</p>
+    <p><strong>Absence of evidence reported as such.</strong> A learner who omits the rationale has provided no evidence of reasoning, and the model is designed to report that absence rather than infer a level from completion or time on page.</p>
+    <p><strong>Defined limits for synthetic evaluation.</strong> Simulated learners and LLM judges can help screen whether a task is clear and appropriately paced, but they cannot provide evidence that people learned, so claims about learning are reserved for real learners, with human review of rubric scoring.</p>
 
-    <h2 class="move">What I do not know yet</h2>
-    <ul>
-      <li>Whether learners in an ungraded course will commit and explain at rates high enough to support claims about a cohort. <span class="claim claim--open">open question</span></li>
-      <li>How well model-assisted rubric scoring agrees with trained human raters on short rationales. <span class="claim claim--open">open question</span></li>
-      <li>The feasibility pilot proposal is under review and has not yet run.</li>
-    </ul>
-    <p>The same evidence model is the basis for the competency graph and the tutor sketched in <a href="../notes/assessment-with-ai.html">Assessment when every learner has an assistant</a>.</p>
+    <h2>Status and open questions</h2>
+    <p>Telemetry mapping is underway, and the feasibility pilot proposal is under review. Several questions remain open: whether learners in ungraded courses will commit and explain at rates sufficient to support claims about a cohort, how closely model-assisted rubric scoring agrees with trained human raters on brief rationales, and how the inferential distances in the model should be validated empirically rather than set by design judgment alone.</p>
+    <p>The same evidence model underlies the competency graph and tutoring design described in <a href="../notes/assessment-with-ai.html">Evidence of Learning When AI Is Ubiquitous</a>.</p>
 
     <h2>References</h2>
     <ol class="refs">
       <li id="r1">Mislevy, R. J., Almond, R. G., &amp; Lukas, J. F. (2003). <em>A brief introduction to evidence-centered design</em> (ETS Research Report RR-03-16). Educational Testing Service.</li>
+      <li id="r2">Chi, M. T. H., Bassok, M., Lewis, M. W., Reimann, P., &amp; Glaser, R. (1989). Self-explanations: How students study and use examples in learning to solve problems. <em>Cognitive Science, 13</em>(2), 145&ndash;182.</li>
     </ol>
 
     <nav class="next" aria-label="More work">
       More work
       <ul>
-        <li><a href="staff-as-learners.html">Staff as learners: an AI course-design system</a></li>
-        <li><a href="ar-tutors.html">When learners outgrew the tool</a></li>
+        <li><a href="workplace-learning.html">AI-Assisted Course Authoring as Workplace Learning</a></li>
+        <li><a href="ar-tutors.html">From Assistance to Adaptive Scaffolding</a></li>
       </ul>
     </nav>
   </article>
@@ -66,11 +63,11 @@
   <aside class="facts" aria-label="Project facts">
     <dl>
       <dt>Role</dt>
-      <dd>Designer of the evidence model; workstream director</dd>
+      <dd>Workstream director; designer of the evidence model</dd>
       <dt>Setting</dt>
-      <dd>Ungraded non-degree courses offered through my office (first setting)</dd>
+      <dd>Ungraded non-degree courses offered through my office (initial setting)</dd>
       <dt>Methods</dt>
-      <dd>Evidence-centered design, rubric scoring, calibration measures, telemetry mapping in Apache Superset</dd>
+      <dd>Evidence-centered design; rubric scoring; calibration measures; telemetry mapping in Apache Superset</dd>
       <dt>Status</dt>
       <dd>Telemetry mapping underway; feasibility pilot proposal under review</dd>
     </dl>

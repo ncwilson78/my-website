@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Assessment when every learner has an assistant | Nicholas Wilson</title>
-  <meta name="description" content="Notes on treating judgment and changes in reasoning as evidence of learning when learners have ubiquitous AI, and on a tutor that asks for a commitment before it reveals anything.">
+  <title>Evidence of Learning When AI Is Ubiquitous | Nicholas Wilson</title>
+  <meta name="description" content="Essay: an approach to assessment that treats judgment, calibration, and the revision of reasoning as primary evidence of learning when capable AI is always available, and its implications for AI tutoring systems.">
   <link rel="canonical" href="https://ncwilson78.github.io/my-website/notes/assessment-with-ai.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ncwilson78.github.io/my-website/notes/assessment-with-ai.html">
-  <meta property="og:title" content="Assessment when every learner has an assistant">
-  <meta property="og:description" content="Notes on treating judgment and changes in reasoning as evidence of learning when learners have ubiquitous AI, and on a tutor that asks for a commitment before it reveals anything.">
+  <meta property="og:title" content="Evidence of Learning When AI Is Ubiquitous">
+  <meta property="og:description" content="Essay: an approach to assessment that treats judgment, calibration, and the revision of reasoning as primary evidence of learning when capable AI is always available, and its implications for AI tutoring systems.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,8 +25,8 @@
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="../#work">Work</a></li>
-        <li><a href="../#notes">Notes</a></li>
-        <li><a href="../#commitments">How I work</a></li>
+        <li><a href="../#notes">Essays</a></li>
+        <li><a href="../#commitments">Principles</a></li>
         <li><a href="../#experience">Experience</a></li>
         <li><a href="../#contact">Contact</a></li>
       </ul>
@@ -36,62 +36,72 @@
 
 <main id="main" class="wrap">
 <header class="doc-head">
-  <p class="kind"><a href="../#notes">Note</a>, October 2026</p>
-  <h1>Assessment when every learner has an assistant</h1>
-  <p class="lede">When an AI can produce a competent answer on request, a correct answer says little about what the learner can do. These notes describe how I have handled that problem in a staff course I wrote, and the ideas I would most like to test next.</p>
+  <p class="kind"><a href="../#notes">Essay</a>, October 2026</p>
+  <h1>Evidence of Learning When AI Is Ubiquitous</h1>
+  <p class="lede">When a capable AI system can produce a correct answer on request, the answer alone carries limited information about what the learner knows or can do. This essay outlines an approach that treats judgment, calibration, and the revision of reasoning as primary evidence, and describes how that approach informs current design work and a program of future research.</p>
 </header>
 
 <div class="doc">
   <article class="doc-body prose">
-    <h2>Judgment as the evidence</h2>
-    <p>The staff AI course I wrote for my office at Harvard uses 15-minute, text-only sections built around one routine drawn from the office's acceptable use policy: Decide, Ask, Check, Own. Its learners have AI available for every task, so the course does not treat the output as evidence of anything. It treats the learner's judgment about the output as the evidence.</p>
-    <p>In one activity, learners mark six AI outputs as "looks right" or "not sure" before seeing the sources. One of the six contains no error, so the exercise cannot be passed by assuming everything is wrong, and the pattern of marks shows whether a learner's suspicion is calibrated or indiscriminate. The staff competency framework behind the course follows the same logic and credits a well-reasoned decision not to use AI as highly as adoption.</p>
-    <p>Testing the first draft against five leading introductory AI courses exposed my own assumptions. Its examples came mostly from administrative work, although the AI Inventory had mapped seven functional areas, and its verification practice gave learners too little feedback to learn from a missed error. The second version addressed both, and I removed a capstone thread I liked because it broke the 15-minute cap and made later sections depend on entries learners might not see again.</p>
-    <p>The course is with the AI Leadership Team for review and has not met learners yet. Whether its calibration activity changes how often staff check AI output in their real work is the outcome that matters, and it is unmeasured. <span class="claim claim--open">open question</span></p>
+    <h2>The assessment problem</h2>
+    <p>Most assessment practice rests on an assumption that the learner produced the work being evaluated. Ubiquitous AI weakens that assumption for a wide range of tasks, and the familiar responses, restricting AI or detecting its use, protect the old inference without asking what evidence would now be meaningful. Evidence-centered design offers a more productive starting point, because it begins with the claim to be made about a learner and works backward to the observations that would support it.<sup><a href="#r1">1</a></sup> Applied to learners who have AI at hand, it shifts attention from the products learners submit to the judgments they make about AI-assisted work and the ways their reasoning changes.</p>
 
-    <h2>Grading the change in a learner's reasoning</h2>
-    <p>The idea I would most like to test extends that logic to assessment generally. A learner commits to a position, checks it against an AI, and then explains where and why they changed their mind, or why they did not. The answer itself carries little weight, and the evidence is the quality of the reasoning about the change: whether the learner can say what the AI's response revealed, what conditions would make their original position right after all, and what they would do differently in a new case.</p>
-    <p>This design treats the AI as part of the task rather than a threat to it, and it connects directly to the contingent-reasoning measures in the <a href="../work/evidence-of-learning.html">evidence model for ungraded courses</a>. My expectation is that explanations anchored to a learner's own earlier commitment are harder to outsource than answers, <span class="claim claim--expect">expectation</span> although a capable assistant could also produce a plausible account of a change of mind, and finding out how easily it can is the first experiment I would run. <span class="claim claim--open">open question</span></p>
+    <h2>Judgment as evidence</h2>
+    <p>A staff AI course I designed for my office applies this reasoning to workplace learning. The course consists of 15-minute, text-only sections organized around a single routine drawn from the office's acceptable use policy: decide, ask, check, and own. Because learners have AI available for every task, the course treats their judgment about AI output as the evidence of learning. In one activity, learners classify six AI outputs as plausible or uncertain before consulting the sources, and one of the six contains no error, so the activity rewards calibrated scrutiny rather than blanket suspicion. The staff competency framework behind the course follows the same logic and credits a well-reasoned decision not to use AI as highly as effective adoption.</p>
+    <p>Before the course reached learners, I reviewed the draft against five widely used introductory AI courses. The review showed that its examples drew too heavily on administrative work, despite an organizational inventory that had mapped seven functional areas, and that its verification exercises gave learners too little feedback to learn from an error they missed. The second version addressed both issues, and I also removed a capstone component because it exceeded the section length and created dependencies across sections that learners might not revisit. The course is currently with the office's AI Leadership Team for review, and whether its calibration activities change how carefully staff check AI output in their daily work remains to be studied.</p>
 
-    <h2>A tutor that asks first</h2>
-    <p>In an AI-native product, the same idea would shape agent behavior. The tutor would ask the learner to commit to a prediction or a rationale before it reveals anything, track how confidence and reasoning change across varied situations, and fade its own help as those signals strengthen. The fading principle comes from my <a href="../work/ar-tutors.html">AR tutor research</a>, where participants outgrew a guide that never adjusted to them.</p>
-    <p>In system terms, I would extend the prerequisite and outcome links that the Course Building Assistant's outlines already carry into an explicit competency graph. The evidence model would attach to its nodes, so that learner state is represented per competency together with the inferential distance behind each estimate, and the tutor's behavior would read from that state. A node with only distant evidence would prompt the tutor to elicit better evidence before advancing, rather than treating completion as mastery. <span class="claim claim--expect">expectation</span></p>
+    <h2>Assessing the revision of reasoning</h2>
+    <p>The research direction I find most promising extends this logic to assessment generally. A learner commits to a position, consults an AI, and then explains whether and why the position changed. The evidence lies less in the final answer than in the quality of that explanation: whether the learner can identify what the AI's response revealed, under what conditions the original position would still hold, and how the reasoning would apply to a new case. The design draws on established work on self-explanation,<sup><a href="#r2">2</a></sup> on conceptual change as the accommodation of new ideas against prior ones,<sup><a href="#r3">3</a></sup> and on predict-observe-explain tasks as probes of understanding.<sup><a href="#r4">4</a></sup></p>
+    <p>The approach incorporates AI into the task rather than treating it as a threat to the task, and it connects directly to the contingent-reasoning measures in the <a href="../work/evidence-of-learning.html">evidence model for ungraded courses</a>. My working hypothesis is that explanations anchored to a learner's own prior commitment are more difficult to outsource than answers. A capable assistant could nonetheless generate a plausible account of a change of mind, and determining how readily it can is the first study this approach requires.</p>
 
-    <h2>Where research constrains the design and where it becomes a hypothesis</h2>
-    <p>I let research constrain the work where it is strong. Worked examples, retrieval practice, and feedback that arrives while a learner can still act on it shape the staff course directly, and evidence-centered design governs how I connect observations to claims.<sup><a href="#r1">1</a></sup> I treat research as a hypothesis where AI changes the conditions it was built on, and assessment is the clearest case, because most of the practices we inherited assume a learner working without a capable assistant at hand.</p>
+    <h2>Implications for AI tutoring systems</h2>
+    <p>In an AI-native learning environment, the same principle would govern agent behavior. A tutor would ask the learner to commit to a prediction or rationale before revealing anything, track how confidence and reasoning change across varied situations, and reduce its support as those signals strengthen. The emphasis on fading follows from research on scaffolding and from my <a href="../work/ar-tutors.html">earlier work on augmented reality tutors</a>, in which participants outgrew a guide that could not adapt to them.<sup><a href="#r5">5</a></sup></p>
+    <p>At the level of system architecture, this implies extending the prerequisite and outcome links that the Course Building Assistant's outlines already carry into an explicit competency graph. The evidence model would attach to each node, so that learner state is represented per competency together with the inferential distance behind each estimate, and the tutor's behavior would draw on that state. Where a competency is supported only by distant evidence, the tutor would seek better evidence before advancing the learner, rather than treating completion as mastery.</p>
 
-    <h2>What would change my mind</h2>
+    <h2>Research as constraint and as hypothesis</h2>
+    <p>I treat research as a constraint where its findings are robust. Worked examples,<sup><a href="#r6">6</a></sup> retrieval practice,<sup><a href="#r7">7</a></sup> and timely, task-focused feedback<sup><a href="#r8">8</a></sup> shape the staff course directly. I treat research as a hypothesis where AI alters the conditions under which it was established, and assessment is the clearest case, because most inherited assessment practices assume a learner working without a capable assistant.</p>
+
+    <h2>Conditions that would revise this approach</h2>
     <ul>
-      <li>If explanations of a changed position turn out to be as easy to generate with AI as answers, the evidence collapses, and the design would need to move toward process evidence gathered during the work or toward conversation with a person.</li>
-      <li>If calibration in the course does not carry over to how staff check AI output in their real work, judgment exercises of this kind measure performance in the exercise and little else.</li>
-      <li>If LLM-assisted scoring of rationales diverges from trained human raters, the scoring has to stay human until the gap is understood.</li>
+      <li>If explanations of a changed position prove as easy to generate with AI as answers, this form of evidence loses its value, and assessment would need to rely more on process evidence gathered during the work or on dialogue with a person.</li>
+      <li>If calibration within the course does not transfer to how staff evaluate AI output in their daily work, judgment exercises of this kind measure performance within the exercise and little beyond it.</li>
+      <li>If LLM-assisted scoring of rationales diverges from trained human raters, scoring should remain with people until the source of the divergence is understood.</li>
     </ul>
 
     <h2>References</h2>
     <ol class="refs">
       <li id="r1">Mislevy, R. J., Almond, R. G., &amp; Lukas, J. F. (2003). <em>A brief introduction to evidence-centered design</em> (ETS Research Report RR-03-16). Educational Testing Service.</li>
+      <li id="r2">Chi, M. T. H., Bassok, M., Lewis, M. W., Reimann, P., &amp; Glaser, R. (1989). Self-explanations: How students study and use examples in learning to solve problems. <em>Cognitive Science, 13</em>(2), 145&ndash;182.</li>
+      <li id="r3">Posner, G. J., Strike, K. A., Hewson, P. W., &amp; Gertzog, W. A. (1982). Accommodation of a scientific conception: Toward a theory of conceptual change. <em>Science Education, 66</em>(2), 211&ndash;227.</li>
+      <li id="r4">White, R., &amp; Gunstone, R. (1992). <em>Probing understanding</em>. Falmer Press.</li>
+      <li id="r5">Wood, D., Bruner, J. S., &amp; Ross, G. (1976). The role of tutoring in problem solving. <em>Journal of Child Psychology and Psychiatry, 17</em>(2), 89&ndash;100.</li>
+      <li id="r6">Sweller, J., &amp; Cooper, G. A. (1985). The use of worked examples as a substitute for problem solving in learning algebra. <em>Cognition and Instruction, 2</em>(1), 59&ndash;89.</li>
+      <li id="r7">Roediger, H. L., &amp; Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <em>Psychological Science, 17</em>(3), 249&ndash;255.</li>
+      <li id="r8">Hattie, J., &amp; Timperley, H. (2007). The power of feedback. <em>Review of Educational Research, 77</em>(1), 81&ndash;112.</li>
     </ol>
 
     <nav class="next" aria-label="Related">
       Related
       <ul>
-        <li><a href="../work/evidence-of-learning.html">Evidence of learning in courses without grades</a></li>
-        <li><a href="model-and-code.html">What I stopped asking the model to do</a></li>
+        <li><a href="../work/evidence-of-learning.html">Measuring Learning in Ungraded Courses</a></li>
+        <li><a href="model-and-code.html">Model Judgment and Deterministic Verification in AI-Assisted Course Authoring</a></li>
       </ul>
     </nav>
   </article>
 
-  <aside class="facts" aria-label="About this note">
+  <aside class="facts" aria-label="About this essay">
     <dl>
       <dt>Draws on</dt>
       <dd>
         <ul>
           <li>A staff AI course (in review)</li>
-          <li>An organizational AI Inventory</li>
+          <li>An organizational AI inventory</li>
           <li>The evidence model for ungraded courses</li>
-          <li>AR tutor research at Northeastern</li>
+          <li>Augmented reality tutor research</li>
         </ul>
       </dd>
+      <dt>Theoretical grounding</dt>
+      <dd>Evidence-centered design; self-explanation; conceptual change; scaffolding</dd>
     </dl>
   </aside>
 </div>
