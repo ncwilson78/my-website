@@ -1,0 +1,48 @@
+<!-- title: What I stopped asking the model to do -->
+<!-- description: A defect I tried to fix with stricter prompts came from my own code, and it changed how I divide work between model judgment and deterministic guarantees. -->
+<header class="doc-head">
+  <p class="kind"><a href="../#notes">Note</a>, October 2026</p>
+  <h1>What I stopped asking the model to do</h1>
+  <p class="lede">While building the VPAL Course Building Assistant, my working theory of quality shifted from writing better instructions to dividing the work more clearly between the model and deterministic code. A single defect in June 2026 started that shift.</p>
+</header>
+
+<div class="doc">
+  <article class="doc-body prose">
+    <h2>The bug I tried to fix with prompts</h2>
+    <p>Generated modules kept producing bridge text between consecutive videos that previewed the next video ("In the next video, we'll explore&hellip;") and trailed off into a truncated script excerpt. I read it as a model failure, so I added an absolute rule against preview language, expanded the pre-output self-check to scan for those phrases, and tightened the transition rule, and the pattern persisted. When I traced it, the text came from my own post-processing code: a function that inserted a bridge between back-to-back videos pulled the next video's first line, cut it at 80 characters, and dropped it into the exact template the prompt forbade.</p>
+    <p>No prompt rule could have fixed text the model never wrote. The fix had two layers: the automatically inserted element now uses neutral wording, and a sanitizer strips preview language from any bridge element regardless of which source produced it.</p>
+
+    <h2>What changed in how I build</h2>
+    <p>The lesson concerned less that one function than the habit behind it, since I had been asking the prompt to carry guarantees that belonged in code. I now sort each requirement by whether it calls for judgment or can be checked. The model decides what to teach, in what order, and how to phrase it, while code handles what can be verified:</p>
+    <ul>
+      <li><strong>Citations.</strong> Testing showed the model copying stale video timecodes from elsewhere in uploaded documents. A verifier now matches each video's content against the real transcript and corrects the range, and it leaves ambiguous cases untouched rather than guessing.</li>
+      <li><strong>Structure.</strong> Instructors' own manuscripts import through five deterministic parsers with no AI call, and anything a parser cannot classify is preserved and flagged instead of dropped.</li>
+      <li><strong>Platform settings.</strong> Research on the platform's real export format showed that two fields my prompts had been asking the model to fill in do not exist on the platform, so I removed them from every prompt and worked example.</li>
+      <li><strong>Evaluation.</strong> Deterministic scans for repeated activities and near-duplicate name spellings go to the LLM judges as evidence to verify, so the judges interpret the counts instead of recomputing them.</li>
+    </ul>
+    <p>The same sorting changed where AI runs at all. Human-authored manuscripts now skip the automated quality review by default. A safety net that inserted reflections between back-to-back videos also no longer touches manuscript pages, after I found it splicing generated prompts into content meant to import verbatim.</p>
+
+    <h2>Why this is a learning design question</h2>
+    <p>Each requirement moved into code is a decision about what the people using the system can stop checking and what they still need to judge. When citations are verified deterministically, a reviewer's attention can go to whether a sequence teaches well, and that is the judgment I most want instructional designers to keep practicing. <span class="claim claim--expect">expectation</span></p>
+
+    <h2>What I still do not know</h2>
+    <p>The four-evaluator review and the standalone Pedagogy Evaluator produce evidence-anchored scores, but I have not yet measured how well those scores agree with experienced instructional designers rating the same modules. <span class="claim claim--open">open question</span> The simulated-learner persona in the evaluator is also hand-authored and flagged as a placeholder until personas can be derived from real learner feedback. My expectation is that agreement will be uneven across dimensions, stronger on structural checks such as workload and alignment and weaker on whether a sequence will hold a particular learner's attention, <span class="claim claim--expect">expectation</span> and I would want that result in hand before treating any evaluator score as evidence of learning.</p>
+
+    <nav class="next" aria-label="Related">
+      Related
+      <ul>
+        <li><a href="../work/staff-as-learners.html">Staff as learners: the VPAL Course Building Assistant</a></li>
+        <li><a href="assessment-with-ai.html">Assessment when every learner has an assistant</a></li>
+      </ul>
+    </nav>
+  </article>
+
+  <aside class="facts" aria-label="About this note">
+    <dl>
+      <dt>System</dt>
+      <dd>VPAL Course Building Assistant</dd>
+      <dt>Principle</dt>
+      <dd>The model decides what to teach and how to say it; code guarantees what can be checked.</dd>
+    </dl>
+  </aside>
+</div>
